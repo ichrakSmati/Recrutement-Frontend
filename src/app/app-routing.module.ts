@@ -8,8 +8,8 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
-import {FrontPageComponent} from "./front-page/front-page.component";
-import {EmploiComponent} from "./front-page/emploi/emploi.component";
+import {FrontPageComponent} from './front-page/front-page.component';
+import {EmploiComponent} from './front-page/emploi/emploi.component';
 
 const routes: Routes = [
   {

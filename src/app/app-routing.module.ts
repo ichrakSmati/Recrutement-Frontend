@@ -9,11 +9,18 @@ import {
   NbResetPasswordComponent,
 } from '@nebular/auth';
 import {FrontPageComponent} from "./front-page/front-page.component";
+import {EmploiComponent} from "./front-page/emploi/emploi.component";
 
 const routes: Routes = [
   {
     path: '',
     component: FrontPageComponent,
+    children: [
+      {
+        path: 'emploi',
+        component: EmploiComponent,
+      }
+    ]
   },
   {
     path: 'pages',

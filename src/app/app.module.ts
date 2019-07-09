@@ -21,18 +21,23 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import  {FrontPageComponent} from "./front-page/front-page.component";
+import {FrontPageModule} from "./front-page/front-page.module";
+import {RechercheComponent} from "./front-page/recherche/recherche.component";
+import {EmploiComponent} from "./front-page/emploi/emploi.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    FrontPageComponent
+    FrontPageComponent,
+    RechercheComponent,
+    EmploiComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    FrontPageModule,
     ThemeModule.forRoot(),
 
     NbSidebarModule.forRoot(),

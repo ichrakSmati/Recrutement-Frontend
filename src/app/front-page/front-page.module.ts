@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {RechercheComponent} from "./recherche/recherche.component";
 
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+
   ]
 })
 export class FrontPageModule { }

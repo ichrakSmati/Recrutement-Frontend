@@ -11,22 +11,17 @@ const routes: Routes = [{
   component: PagesComponent,
   children: [
     {
-      path: 'dashboard',
+      path: 'Liste des offres',
       component: ECommerceComponent,
     },
     {
-      path: 'iot-dashboard',
+      path: 'deposer une offre',
       component: DashboardComponent,
     },
     {
       path: 'layout',
       loadChildren: () => import('./layout/layout.module')
         .then(m => m.LayoutModule),
-    },
-    {
-      path: 'forms',
-      loadChildren: () => import('./forms/forms.module')
-        .then(m => m.FormsModule),
     },
     {
       path: 'ui-features',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ngx-candidat',
+  selector: 'candidat',
   templateUrl: './candidat.component.html',
   styleUrls: ['./candidat.component.scss']
 })

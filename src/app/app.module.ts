@@ -20,17 +20,17 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import  {FrontPageComponent} from "./front-page/front-page.component";
+import {FrontPageComponent} from "./front-page/front-page.component";
 import {FrontPageModule} from "./front-page/front-page.module";
 import {RechercheComponent} from "./front-page/recherche/recherche.component";
 import {EmploiComponent} from "./front-page/emploi/emploi.component";
+import {APP_BASE_HREF} from "@angular/common";
 
 @NgModule({
   declarations: [
     AppComponent,
     FrontPageComponent,
-    RechercheComponent,
-    EmploiComponent
+    RechercheComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +50,8 @@ import {EmploiComponent} from "./front-page/emploi/emploi.component";
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     CoreModule.forRoot(),
-  ],
-  bootstrap: [AppComponent],
+  ],providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

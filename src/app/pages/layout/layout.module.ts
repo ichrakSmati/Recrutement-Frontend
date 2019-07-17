@@ -37,6 +37,10 @@ import { NewsService } from './news.service';
     NbUserModule,
     LayoutRoutingModule,
   ],
+  exports: [
+    InfiniteListComponent,
+    ListComponent,
+  ],
   declarations: [
     LayoutComponent,
     TabsComponent,

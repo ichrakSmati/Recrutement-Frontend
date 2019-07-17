@@ -10,9 +10,6 @@ import {
 } from '@nebular/auth';
 import {FrontPageComponent} from './front-page/front-page.component';
 import {EmploiComponent} from './front-page/emploi/emploi.component';
-import {RechercheComponent} from './front-page/recherche/recherche.component';
-import {RechercheAvanceComponent} from './front-page/recherche-avance/recherche-avance.component';
-import {CandidatComponent} from './front-page/candidat/candidat.component';
 
 const routes: Routes = [
   {
@@ -22,16 +19,8 @@ const routes: Routes = [
       {
         path: 'emploi',
         component: EmploiComponent,
-      },
-      {
-        path: '',
-        component: RechercheComponent,
-      },
-      {
-        path: 'candidat',
-        component: CandidatComponent,
-      },
-    ],
+      }
+    ]
   },
   {
     path: 'pages',
@@ -68,6 +57,8 @@ const routes: Routes = [
       },
     ],
   },
+  { path: '', redirectTo: 'pages', pathMatch: 'full' },
+  { path: '**', redirectTo: 'pages' },
 ];
 
 const config: ExtraOptions = {

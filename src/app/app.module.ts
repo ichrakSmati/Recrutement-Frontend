@@ -30,7 +30,8 @@ import {APP_BASE_HREF} from "@angular/common";
   declarations: [
     AppComponent,
     FrontPageComponent,
-    RechercheComponent
+    RechercheComponent,
+    EmploiComponent,
   ],
   imports: [
     BrowserModule,

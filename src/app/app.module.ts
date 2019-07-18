@@ -11,6 +11,8 @@ import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -26,14 +28,17 @@ import {RechercheComponent} from "./front-page/recherche/recherche.component";
 import {EmploiComponent} from "./front-page/emploi/emploi.component";
 import {APP_BASE_HREF} from "@angular/common";
 import {RouterModule} from "@angular/router";
+import {LoginComponent} from "./login/login.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     FrontPageComponent,
-    RechercheComponent
+    RechercheComponent,
+    LoginComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -54,4 +59,5 @@ import {RouterModule} from "@angular/router";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }

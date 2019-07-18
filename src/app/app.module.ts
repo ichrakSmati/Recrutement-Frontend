@@ -25,6 +25,7 @@ import {FrontPageModule} from "./front-page/front-page.module";
 import {RechercheComponent} from "./front-page/recherche/recherche.component";
 import {EmploiComponent} from "./front-page/emploi/emploi.component";
 import {APP_BASE_HREF} from "@angular/common";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,6 @@ import {APP_BASE_HREF} from "@angular/common";
     AppRoutingModule,
     FrontPageModule,
     ThemeModule.forRoot(),
-
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),

@@ -14,10 +14,10 @@ import { NgxEchartsModule } from 'ngx-echarts';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
-import { StatusCardComponent } from './status-card/status-card.component';
 import { FormsModule } from '@angular/forms';
 import {FormLayoutsComponent} from "../forms/form-layouts/form-layouts.component";
 import {FormInputsComponent} from "../forms/form-inputs/form-inputs.component";
+import {OffreService} from "../../services/offre.service";
 
 
 @NgModule({
@@ -39,9 +39,11 @@ import {FormInputsComponent} from "../forms/form-inputs/form-inputs.component";
   ],
   declarations: [
     DashboardComponent,
-    StatusCardComponent,
     FormLayoutsComponent,
   FormInputsComponent,
   ],
+  providers: [
+    OffreService,
+],
 })
 export class DashboardModule { }

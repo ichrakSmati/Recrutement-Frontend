@@ -4,33 +4,33 @@
       <nb-card-body>
         <form>
           <div class="form-group row">
-            <label for="inputEmail1" class="label col-sm-3 col-form-label">Titre</label>
+            <label for="titre" class="label col-sm-3 col-form-label">Titre</label>
             <div class="col-sm-9">
-              <input type="text" nbInput fullWidth id="inputEmail1" placeholder="titre">
+              <input [(ngModel)]="offre.titre" placeholder="Titre de l'offre" name="titre" class="form-control" id="titre">
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPassword2" class="label col-sm-3 col-form-label">Type</label>
+            <label for="type" class="label col-sm-3 col-form-label">Type</label>
             <div class="col-sm-9">
-              <input type="text" nbInput fullWidth id="inputPassword2" placeholder="Type de l'offre">
+              <input [(ngModel)]="offre.type" placeholder="Type de l'offre" name="type" class="form-control" id="type">
             </div>
           </div>
           <div class="form-group row">
-            <label for="ok" class="label col-sm-3 col-form-label">Departement</label>
+            <label for="departement" class="label col-sm-3 col-form-label">departement</label>
             <div class="col-sm-9">
-              <input type="text" nbInput fullWidth id="ok" placeholder="Departement de l'offre">
+              <input [(ngModel)]="offre.departement" placeholder="departement de l'offre" name="departement" class="form-control" id="departement">
             </div>
           </div>
           <div class="form-group row">
             <label for="salaire" class="label col-sm-3 col-form-label">Salaire</label>
             <div class="col-sm-9">
-              <input type="text" nbInput fullWidth id="salaire" placeholder="Salaire de l'offre">
+              <input [(ngModel)]="offre.salaire" placeholder="Salaire de l'offre" name="salaire" class="form-control" id="salaire">
             </div>
           </div>
           <div class="form-group row">
             <label class="label col-sm-3 col-form-label">Description</label>
             <div class="col-sm-9">
-              <textarea rows="5" nbInput fullWidth shape="round"  placeholder="Description de l'offre"></textarea>
+              <textarea [(ngModel)]="offre.description"  rows="5" nbInput fullWidth shape="round"  placeholder="Description de l'offre"></textarea>
             </div>
           </div>
           <div class="form-group row">
@@ -44,7 +44,7 @@
           </div>
           <div class="form-group row">
             <div class="offset-sm-3 col-sm-9">
-              <button type="submit" nbButton status="primary">Sign in</button>
+              <button type="submit" nbButton status="primary" (click)="createOffre()" >Sign in</button>
             </div>
           </div>
         </form>

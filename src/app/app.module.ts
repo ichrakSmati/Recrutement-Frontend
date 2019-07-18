@@ -26,15 +26,20 @@ import {RechercheComponent} from "./front-page/recherche/recherche.component";
 import {EmploiComponent} from "./front-page/emploi/emploi.component";
 import {APP_BASE_HREF} from "@angular/common";
 import {RouterModule} from "@angular/router";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {FilterPipe} from "./front-page/recherche/filtre.pipe";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     FrontPageComponent,
-    RechercheComponent
+    RechercheComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -45,6 +50,7 @@ import {RouterModule} from "@angular/router";
     NbDatepickerModule.forRoot(),
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
+    Ng2SearchPipeModule,
     NbToastrModule.forRoot(),
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',

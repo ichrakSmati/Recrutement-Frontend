@@ -10,8 +10,11 @@ import {
 } from '@nebular/auth';
 import {FrontPageComponent} from './front-page/front-page.component';
 import {EmploiComponent} from './front-page/emploi/emploi.component';
+<<<<<<< HEAD
 import {RechercheComponent} from "./front-page/recherche/recherche.component";
 import {CandidatComponent} from "./front-page/candidat/candidat.component";
+=======
+>>>>>>> remotes/origin/master
 
 const routes: Routes = [
   {
@@ -21,6 +24,7 @@ const routes: Routes = [
       {
         path: 'emploi',
         component: EmploiComponent,
+<<<<<<< HEAD
       },
       {
         path: '',
@@ -29,6 +33,8 @@ const routes: Routes = [
       {
         path: 'candidat',
         component: CandidatComponent,
+=======
+>>>>>>> remotes/origin/master
       }
     ]
   },

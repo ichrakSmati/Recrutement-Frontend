@@ -32,7 +32,7 @@ import {RouterModule} from "@angular/router";
     AppComponent,
     FrontPageComponent,
     RechercheComponent,
-    EmploiComponent,
+    
   ],
   imports: [
     BrowserModule,

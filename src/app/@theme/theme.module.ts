@@ -1,6 +1,10 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {NbAuthComponent, NbAuthModule} from './components/auth';
+import {NbPasswordAuthStrategy} from "./components/auth";
+
 import {
+  NbInputModule,
   NbActionsModule,
   NbLayoutModule,
   NbMenuModule,
@@ -21,6 +25,7 @@ import {
   HeaderComponent,
   SearchInputComponent,
   TinyMCEComponent,
+
 } from './components';
 import {
   CapitalizePipe,
@@ -41,6 +46,7 @@ import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
 
 const NB_MODULES = [
+  NbInputModule,
   NbLayoutModule,
   NbMenuModule,
   NbUserModule,
@@ -79,15 +85,20 @@ const PIPES = [
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {
     return <ModuleWithProviders>{
+
       ngModule: ThemeModule,
       providers: [
         ...NbThemeModule.forRoot(
           {
             name: 'default',
           },
+
           [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME ],
         ).providers,
+
         WindowModeBlockScrollService,
+
+
       ],
     };
   }

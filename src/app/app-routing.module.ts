@@ -7,11 +7,12 @@ import {
   NbRegisterComponent,
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
-} from '@nebular/auth';
+} from './@theme/components/auth';
 import {FrontPageComponent} from './front-page/front-page.component';
 import {EmploiComponent} from './front-page/emploi/emploi.component';
 import {RechercheComponent} from "./front-page/recherche/recherche.component";
 import {CandidatComponent} from "./front-page/candidat/candidat.component";
+import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
         component: CandidatComponent,
       }
     ]
+  },
+  {
+    path: 'singin',
+    component: LoginComponent,
   },
   {
     path: 'pages',

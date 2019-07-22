@@ -33,6 +33,7 @@ export class LoginComponent {
           data => {
             this.user = data;
             //sessionStorage.setItem("ROLE", this.user.role.role);
+            sessionStorage.setItem("Id", this.user.id);
             sessionStorage.setItem("Nom", this.user.nom);
             sessionStorage.setItem("Prenom", this.user.prenom);
             sessionStorage.setItem("Email", this.user.email);

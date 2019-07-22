@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OffreService} from "../../services/offre.service";
 import {Offre} from "../../models/offre.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'recherche',
@@ -9,7 +10,7 @@ import {Offre} from "../../models/offre.model";
 
 })
 export class RechercheComponent implements OnInit {
- constructor(private offreService: OffreService) {
+ constructor(private router:Router, private offreService: OffreService) {
 }
 
 offres: Offre[];
@@ -21,4 +22,5 @@ ngOnInit()
         this.offres = data;
       });
   }
+
 }

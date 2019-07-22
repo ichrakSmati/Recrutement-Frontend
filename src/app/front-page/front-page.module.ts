@@ -1,25 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {EmploiComponent} from "./emploi/emploi.component";
-import { RechercheAvanceComponent } from './recherche-avance/recherche-avance.component';
+import { EditorComponent } from './editor/editor.component';
 import { CandidatComponent } from './candidat/candidat.component';
 import {OffreService} from "../services/offre.service";
+import {CKEditorModule} from "ng2-ckeditor";
+import {NbCardModule} from "@nebular/theme";
 import {FormsModule} from "@angular/forms";
-import {FilterPipe} from "./recherche/filtre.pipe";
-import {Ng2SearchPipeModule} from "ng2-search-filter";
-import {RechercheComponent} from "./recherche/recherche.component";
+import {DemandeService} from "../services/demande.service";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @NgModule({
   declarations: [
 EmploiComponent,
-    RechercheAvanceComponent,
-    CandidatComponent
+    EditorComponent,
+    CandidatComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    CKEditorModule
   ],
   providers: [
     OffreService,
+    DemandeService
   ]
 })
 export class FrontPageModule { }

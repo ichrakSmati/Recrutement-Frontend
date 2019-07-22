@@ -25,26 +25,24 @@ import {
 import {FrontPageComponent} from "./front-page/front-page.component";
 import {FrontPageModule} from "./front-page/front-page.module";
 import {RechercheComponent} from "./front-page/recherche/recherche.component";
-import {EmploiComponent} from "./front-page/emploi/emploi.component";
 import {APP_BASE_HREF} from "@angular/common";
-import {RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {FilterPipe} from "./front-page/recherche/filtre.pipe";
+import {CKEditorModule} from 'ng2-ckeditor';
 
 @NgModule({
   declarations: [
     AppComponent,
     FrontPageComponent,
     RechercheComponent,
-    FilterPipe
+    FilterPipe,
     RechercheComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
-    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -61,7 +59,8 @@ import {FilterPipe} from "./front-page/recherche/filtre.pipe";
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     CoreModule.forRoot(),
-  ],providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  ],providers: [{provide: APP_BASE_HREF, useValue : '/' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

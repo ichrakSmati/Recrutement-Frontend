@@ -1,3 +1,5 @@
+import {User} from "./user.model";
+
 export class Offre {
 
   id: string;
@@ -6,5 +8,5 @@ export class Offre {
   type: string;
   departement:string;
   etat: boolean;
-
+  recruteur: User;
 }

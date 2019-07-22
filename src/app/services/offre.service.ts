@@ -2,20 +2,19 @@
 import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Offre } from '../models/offre.model';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import {User} from "../models/user.model";
 
 @Injectable()
 export class OffreService {
 
+  user: User = new User();
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
+      'Authorization': 'Bearer ' + window.sessionStorage.getItem('AuthToken'),
     })};
   constructor(private http: HttpClient) {}
-  private offreUrl = 'http://localhost:8081/offre/';
+  private offreUrl = 'http://localhost:8088/emploi/';
 
   // private poleUrl = '/api';
 
@@ -35,6 +34,8 @@ export class OffreService {
   }
 
   public createOffre(offre) {
+    this.user.id = '1' ;
+    offre.recruteur = this.user;
     return this.http.post<Offre>(this.offreUrl, offre, this.httpOptions);
   }
 

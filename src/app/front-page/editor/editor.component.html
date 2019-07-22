@@ -1,29 +1,31 @@
-
-
-<!-- Page info -->
-<div class="page-top-info">
+<section class="home-section section-hero inner-page overlay bg-image"
+         style="background-image:  url('../../assets/front-end/images/hero_1.jpg');" id="home-section">
   <div class="container">
-    <form class="row checkout-form">
-      <div class="col-md-3">
-        <input type="text" placeholder="ville">
-      </div>
-      <div class="col-md-3">
-        <input type="text" placeholder="contrat">
-      </div>
-      <div class="col-md-3">
-        <input type="text" placeholder="technologie">
-      </div>
-      <div class="col-md-3">
-        <input type="text" placeholder="durre">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-12">
+        <div class="mb-5 text-center">
+          <h1 class="text-white font-weight-bold"></h1>
+        </div>
       </div>
 
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <button class="site-btn">Rechreche</button>
+    </div>
+    <form role="form" #myForm="ngForm" accept-charset="UTF-8" novalidate>
+      <div class="form-group has-feedback"
+           [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
+        <ckeditor [(ngModel)]="demande.lettreMotivation"
+                  #myckeditor="ngModel"
+                  name="lettreMotivation"
+                  required
+                  [config]="ckeConfig"
+                  debounce="500"
+                  (change)="onChange($event)">
+        </ckeditor>
+        <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
       </div>
-      <div class="col-md-4"></div>
-
+      <button (click)="createDemande()" [disabled]="myForm.invalid" class="btn btn-primary">Save</button>
     </form>
+    <div [innerHTML]="lettreMotivation"></div>
+
   </div>
-</div>
-<!-- Page info end -->
+</section>
+

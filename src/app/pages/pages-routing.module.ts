@@ -5,6 +5,8 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './DeposerOffre/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import {ListeOffreComponent} from "./liste-offre/liste-offre.component";
+import {ListeCandidatsComponent} from "./liste-candidats/liste-candidats.component";
 
 const routes: Routes = [{
   path: '',
@@ -15,8 +17,16 @@ const routes: Routes = [{
       component: ECommerceComponent,
     },
     {
+      path: 'listeOffre',
+      component: ListeOffreComponent,
+    },
+    {
       path: 'liste',
       component: DashboardComponent,
+    },
+    {
+      path: 'offre/:id',
+      component: ListeCandidatsComponent,
     },
     {
       path: 'layout',

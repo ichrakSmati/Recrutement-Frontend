@@ -46,20 +46,22 @@
     <div class="mb-5" *ngFor = "let offre of (offres| filter:dep:term:titre)" >
       <div class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
         <div class="col-md-2">
-          <a href="job-single.html"><img src="assets/front-end/images/featured-listing-1.jpg" alt="Image" class="img-fluid"></a>
+           <h1>{{offre.type}}</h1>
         </div>
         <div class="col-md-4">
-          <span class="badge badge-primary px-2 py-1 mb-3">{{offre.type}}</span>
           <h2><a href="job-single.html">{{offre.titre}}</a> </h2>
-          <p class="meta"><strong>description</strong>{{ offre.description}}</p>
+          <p class="meta"><strong>description :</strong> {{ offre.description}}</p>
         </div>
         <div class="col-md-3 text-left">
-          <h3>Melbourn</h3>
-          <span class="meta">{{offre.departement}}</span>
+          <h3>{{offre.departement}}</h3>
         </div>
-        <div class="col-md-3 text-md-right">
-          <strong class="text-black">{{offre.salaire}}</strong>
+        <div class="col-md-2 text-md-right">
+          <div><strong class="text-black">{{offre.salaire}} DT </strong></div>
+          <div></div>
+          <span class="badge badge-primary px-2 py-1 mb-3" ><a href="/editor">Postuler</a></span>
+         <button [routerLink]="['/editor', offre.id]" type="button" >Postule</button>
         </div>
+
       </div>
     </div>
 

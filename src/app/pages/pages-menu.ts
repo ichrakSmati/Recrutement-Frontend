@@ -13,6 +13,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/liste',
   },
   {
+    title: 'liste offre',
+    icon: 'home-outline',
+    link: '/pages/listeOffre',
+  },
+  {
     title: 'FEATURES',
     group: true,
   },

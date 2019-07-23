@@ -1,10 +1,6 @@
+import {User} from "./user.model";
 
-export class Candidat {
-  id: string;
-  nom: string;
-  prenom: string
-  pass: string;
-  dateNaissance:string;
-  photo: string;
-  email: string;
+export class Candidat extends User{
+  cv:string;
+  dateInscription : string;
 }

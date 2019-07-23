@@ -1,5 +1,14 @@
 import { NgModule } from '@angular/core';
-import {NbCardModule, NbListModule, NbMenuModule, NbUserModule} from '@nebular/theme';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbDialogModule, NbInputModule,
+  NbListModule,
+  NbMenuModule, NbPopoverModule, NbSelectModule, NbTabsetModule, NbTooltipModule,
+  NbUserModule,
+  NbWindowModule
+} from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -9,6 +18,9 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { ListeOffreComponent } from './liste-offre/liste-offre.component';
 import { ListeCandidatsComponent } from './liste-candidats/liste-candidats.component';
+
+import {FormsModule} from "@angular/forms";
+
 
 
 @NgModule({
@@ -22,6 +34,17 @@ import { ListeCandidatsComponent } from './liste-candidats/liste-candidats.compo
     DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
+    FormsModule,
+    ThemeModule,
+    NbDialogModule.forChild(),
+    NbWindowModule.forChild(),
+    NbCheckboxModule,
+    NbTabsetModule,
+    NbPopoverModule,
+    NbButtonModule,
+    NbInputModule,
+    NbSelectModule,
+    NbTooltipModule,
   ],
   declarations: [
     PagesComponent,

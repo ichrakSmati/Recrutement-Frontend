@@ -9,6 +9,7 @@ import {NbCardModule} from "@nebular/theme";
 import {FormsModule} from "@angular/forms";
 import {DemandeService} from "../services/demande.service";
 import { Router, ActivatedRoute } from '@angular/router';
+import {CandidatService} from "../services/candidat.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ EmploiComponent,
   ],
   providers: [
     OffreService,
-    DemandeService
+    DemandeService,
+    CandidatService
   ]
 })
 export class FrontPageModule { }

@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import {DemandeService} from "../services/demande.service";
 import { Router, ActivatedRoute } from '@angular/router';
 import {CandidatService} from "../services/candidat.service";
+import {FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ EmploiComponent,
   imports: [
     CommonModule,
     FormsModule,
-    CKEditorModule
+    CKEditorModule,
+    FileUploadModule
   ],
   providers: [
     OffreService,

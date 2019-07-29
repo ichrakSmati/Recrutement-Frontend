@@ -7,6 +7,7 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import {ListeOffreComponent} from "./liste-offre/liste-offre.component";
 import {ListeCandidatsComponent} from "./liste-candidats/liste-candidats.component";
+import {ChoixentretienComponent} from "./choixentretien/choixentretien.component";
 
 const routes: Routes = [{
   path: '',
@@ -19,6 +20,10 @@ const routes: Routes = [{
     {
       path: 'listeOffre',
       component: ListeOffreComponent,
+    },
+    {
+      path: 'choixentretien',
+      component: ChoixentretienComponent,
     },
     {
       path: 'liste',

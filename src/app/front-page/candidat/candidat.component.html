@@ -22,21 +22,17 @@
         </a>
       </div>
       <div class="col-lg-4 ml-auto">
-        <h2 class="section-title mb-3">Jack jacky</h2>
-        <p class="lead">date de naissance : 25/01/1885</p>
-        <p class="lead">Email : jacky@gfi.tn</p>
+        <h2 class="section-title mb-3">{{candidat.nom}} {{candidat.prenom}}</h2>
+        <p class="lead">date de naissance : {{candidat.dateNaissance}}</p>
+        <p class="lead">Email : {{candidat.email}}</p>
         <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="cv">CV</label>
-          <form>
-          <div class="col-md-9">
-            <input  [(ngModel)]="candidat.cv" type="file" id="cv" (change)="selectFile($event)" name="cv">
-            <button (click)="create()" type="submit" >cv</button>
+          <label class="btn btn-default">
+            <input type="file" (change)="selectFile($event)">
+          </label>
 
-          </div>
-          </form>
-        </div>
+          <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
       </div>
     </div>
   </div>
+  </div>
 </section>
-

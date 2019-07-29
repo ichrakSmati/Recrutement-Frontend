@@ -21,7 +21,7 @@ export class CandidatService {
       'Authorization': 'Bearer ' + window.sessionStorage.getItem('AuthToken'),
     })};
   constructor(private http: HttpClient) {}
-  private candidatUrl = 'http://localhost:8088/cv/';
+  private candidatUrl = 'http://localhost:8088/user/';
 
   // private poleUrl = '/api';
 
@@ -39,6 +39,11 @@ export class CandidatService {
 
     return this.http.request(req);
   }
+  getCandidatId(id){
+    return this.http.get<User>(this.candidatUrl + '/id/' + id, this.httpOptions);
+
+  }
+
 }
 
 

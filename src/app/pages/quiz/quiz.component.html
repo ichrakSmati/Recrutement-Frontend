@@ -15,7 +15,7 @@
       <nb-card-body>
 
         <nb-list>
-          <nb-list-item *ngFor="let quiz of quizs">
+          <nb-list-item (click)="readQuiz(quiz)" *ngFor="let quiz of quizs">
             {{ quiz.titre}}
           </nb-list-item>
         </nb-list>
@@ -66,7 +66,7 @@
 
             </div>
 
-            
+
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" (click)="createQuiz()" class="btn btn-primary">Save changes</button>

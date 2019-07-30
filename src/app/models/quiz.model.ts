@@ -1,5 +1,5 @@
 export class Quiz {
-  id: string;
+  id: number;
   titre: string;
   type : string;
   active : boolean;

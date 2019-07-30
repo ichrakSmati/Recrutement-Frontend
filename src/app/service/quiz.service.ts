@@ -31,5 +31,9 @@ export class QuizService {
     return this.http.post<Quiz>(this.quizUrl +'/', quiz, this.httpOptions);
   }
 
+  public creatQuestion(question) {
+    return this.http.post<Quiz>(this.quizUrl +'/', question, this.httpOptions);
+  }
+
 
 }

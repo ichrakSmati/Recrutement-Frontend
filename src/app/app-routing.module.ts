@@ -11,6 +11,8 @@ import {
 import {FrontPageComponent} from './front-page/front-page.component';
 import {EmploiComponent} from './front-page/emploi/emploi.component';
 import {LoginComponent} from "./login/login.component";
+import {QuestionComponent} from "./pages/quiz/question/question.component";
+import {QuizComponent} from "./pages/quiz/quiz.component";
 
 const routes: Routes = [
   {

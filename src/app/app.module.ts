@@ -29,13 +29,15 @@ import {EmploiComponent} from "./front-page/emploi/emploi.component";
 import {APP_BASE_HREF} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
+import {QuizComponent} from "./pages/quiz/quiz.component";
+import {QuizModule} from "./pages/quiz/quiz.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     FrontPageComponent,
     RechercheComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     FormsModule,

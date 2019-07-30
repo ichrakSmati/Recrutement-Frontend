@@ -1,9 +1,9 @@
-import {Questioon} from "./question.model";
+import {Question} from "./question.model";
 
 export class Reponse {
   id: string;
-  reponse: string;
+  reponse: string | number | string[];
   validate: boolean;
   active: boolean;
-  question: Questioon;
+  question: Question;
 }

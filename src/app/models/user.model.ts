@@ -6,7 +6,8 @@ export class User {
     prenom: string;
     pass: string;
     role: Role;
-    dateNaissance:string;
+    dateNaissance: Date;
     photo: string;
     email: string;
+    etat: boolean;
 }

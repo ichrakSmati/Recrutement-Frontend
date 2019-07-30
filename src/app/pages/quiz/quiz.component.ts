@@ -26,11 +26,18 @@ export class QuizComponent implements  OnInit {
       });
   }
 
-  createQuiz(): void {
-    this.quizService.creatQuiz(this.quizToAdd)
-      .subscribe(data => {
-        alert('Quiz created successfully.');
-        //this.router.navigate(['question']);
-      });
+
+
+  readQuiz(quiz: Quiz): void {
+    this.selectedQuiz = quiz;
+    this.router.navigate(['/pages/quiz/'+ this.selectedQuiz.id+'/question']);
   }
+
+  createQuiz(){
+    this.quizService.creatQuiz(this.quizToAdd).subscribe(data => {
+      this.router.navigate(['/pages/quiz']);
+    });
+  }
+
+
 }

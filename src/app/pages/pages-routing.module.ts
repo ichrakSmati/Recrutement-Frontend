@@ -22,7 +22,7 @@ const routes: Routes = [{
       component: ListeOffreComponent,
     },
     {
-      path: 'choixentretien',
+      path: 'choixentretien/:id',
       component: ChoixentretienComponent,
     },
     {

@@ -30,6 +30,8 @@ import {LoginComponent} from "./login/login.component";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {FilterPipe} from "./front-page/recherche/filtre.pipe";
 import {CKEditorModule} from 'ng2-ckeditor';
+import { ReversePipe } from './front-page/toastmessage/reverse.pipe';
+import {ToastMessagesComponent} from "./front-page/toastmessage/toastmessage.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,7 @@ import {CKEditorModule} from 'ng2-ckeditor';
     RechercheComponent,
     FilterPipe,
     RechercheComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     FormsModule,

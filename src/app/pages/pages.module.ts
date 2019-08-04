@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {
-  NbButtonModule, NbCalendarKitModule, NbCalendarModule, NbCalendarRangeModule,
+  NbButtonModule,
+  NbDatepickerModule,
   NbCardModule,
   NbCheckboxModule,
   NbDialogModule, NbInputModule,
@@ -21,14 +22,13 @@ import { ListeCandidatsComponent } from './liste-candidats/liste-candidats.compo
 
 import {FormsModule} from "@angular/forms";
 import { ChoixentretienComponent } from './choixentretien/choixentretien.component';
+import {EntretienService} from "../services/entretien.service";
 
 
 
 @NgModule({
   imports: [
-    NbCalendarKitModule,
-    NbCalendarModule,
-    NbCalendarRangeModule,
+    NbDatepickerModule,
     NbListModule,
     NbUserModule,
     NbCardModule,
@@ -57,6 +57,9 @@ import { ChoixentretienComponent } from './choixentretien/choixentretien.compone
     ChoixentretienComponent,
 
   ],
+  providers:[
+    EntretienService,
+  ]
 })
 export class PagesModule {
 }

@@ -1,0 +1,11 @@
+<div class="col-lg-2"></div>
+<div class="col-md-12 col-lg-6 col-xxxl-4">
+  <nb-card>
+    <nb-card-header>Veuillez choisir les Dates de disponibilité de l'entretien</nb-card-header>
+    <nb-card-body>
+      <input nbInput #dateChoix name="dateChoix" placeholder="Range Picker" [nbDatepicker]="rangepicker">
+      <nb-rangepicker #rangepicker></nb-rangepicker>
+    </nb-card-body>
+  </nb-card>
+</div>
+<button (click)="send(dateChoix.value)">hey</button>

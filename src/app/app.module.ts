@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
 import {
+  NbCalendarModule,
   NbChatModule,
   NbDatepickerModule,
   NbDialogModule,
@@ -31,6 +32,7 @@ import {RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {QuizComponent} from "./pages/quiz/quiz.component";
 import {QuizModule} from "./pages/quiz/quiz.module";
+import {InscriptionComponent} from "./login/inscription/inscription.component";
 
 @NgModule({
   declarations: [
@@ -38,8 +40,10 @@ import {QuizModule} from "./pages/quiz/quiz.module";
     FrontPageComponent,
     RechercheComponent,
     LoginComponent,
+    InscriptionComponent,
   ],
   imports: [
+    NbCalendarModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,

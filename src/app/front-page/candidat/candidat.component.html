@@ -22,11 +22,17 @@
         </a>
       </div>
       <div class="col-lg-4 ml-auto">
-        <h2 class="section-title mb-3">Jack jacky</h2>
-        <p class="lead">date de naissance : 25/01/1885</p>
-        <p class="lead">Email : jacky@gfi.tn</p>
+        <h2 class="section-title mb-3">{{candidat.nom}} {{candidat.prenom}}</h2>
+        <p class="lead">date de naissance : {{candidat.dateNaissance | date :  "dd.MM.y"}}</p>
+        <p class="lead">Email : {{candidat.email}}</p>
+        <div class="form-group row">
+          <label class="btn btn-default">
+            <input type="file" (change)="selectFile($event)">
+          </label>
+
+          <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
       </div>
     </div>
   </div>
+  </div>
 </section>
-

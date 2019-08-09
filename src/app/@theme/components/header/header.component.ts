@@ -5,6 +5,8 @@ import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import {User} from "../../../models/user.model";
+import {CandidatService} from "../../../services/candidat.service";
 
 @Component({
   selector: 'ngx-header',
@@ -12,10 +14,10 @@ import { Subject } from 'rxjs';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
+private recruteurId:string;
+  recruteur:User;
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
-  user: any;
 
   themes = [
     {
@@ -45,15 +47,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private candidatService: CandidatService) {
   }
 
   ngOnInit() {
+    this.recruteurId= localStorage.getItem("Id");
+    console.log("recruteur"+localStorage.getItem("Id"));
+    this.candidatService.getCandidatId(this.recruteurId)
+      .subscribe(data => {
+        console.log(data);
+        this.recruteur = data;
+      });
     this.currentTheme = this.themeService.currentTheme;
 
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
+      .subscribe((users: any) => this.recruteur = users.nick);
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()

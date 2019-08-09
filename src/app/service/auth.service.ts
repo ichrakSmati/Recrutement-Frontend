@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import 'rxjs/add/operator/map';
-import {User} from "../models/user.model";
+import {User} from '../models/user.model';
 const TOKEN_KEY = 'AuthToken';
 @Injectable({
   providedIn: 'root'

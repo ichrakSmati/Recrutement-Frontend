@@ -2,21 +2,36 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './DeposerOffre/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import {ListeOffreComponent} from "./liste-offre/liste-offre.component";
+import {ListeCandidatsComponent} from "./liste-candidats/liste-candidats.component";
+import {ChoixentretienComponent} from "./choixentretien/choixentretien.component";
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
     {
-      path: 'Liste des offres',
+      path: 'DeposerOffre',
       component: ECommerceComponent,
     },
     {
-      path: 'deposer une offre',
+      path: 'listeOffre',
+      component: ListeOffreComponent,
+    },
+    {
+      path: 'choixentretien/:id',
+      component: ChoixentretienComponent,
+    },
+    {
+      path: 'liste',
       component: DashboardComponent,
+    },
+    {
+      path: 'offre/:id',
+      component: ListeCandidatsComponent,
     },
     {
       path: 'layout',
@@ -65,7 +80,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'DeposerOffre',
       pathMatch: 'full',
     },
     {

@@ -1,6 +1,13 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-
+import {
+  NbAuthComponent,
+  NbLoginComponent,
+  NbLogoutComponent,
+  NbRegisterComponent,
+  NbRequestPasswordComponent,
+  NbResetPasswordComponent,
+} from './@theme/components/auth';
 import {FrontPageComponent} from './front-page/front-page.component';
 import {EmploiComponent} from './front-page/emploi/emploi.component';
 import {RechercheComponent} from "./front-page/recherche/recherche.component";
@@ -8,6 +15,7 @@ import {CandidatComponent} from "./front-page/candidat/candidat.component";
 import {LoginComponent} from "./login/login.component";
 import {EditorComponent} from "./front-page/editor/editor.component";
 import {ReponseEntretienComponent} from "./front-page/reponse-entretien/reponse-entretien.component";
+import {SuivreComponent} from "./front-page/suivre/suivre.component";
 const routes: Routes = [
   {
     path: '',
@@ -28,6 +36,10 @@ const routes: Routes = [
       {
         path: 'reponse/:id',
         component: ReponseEntretienComponent,
+      },
+      {
+        path: 'suivre/:id',
+        component: SuivreComponent,
       },
       {
         path: 'editor/:id',

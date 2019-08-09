@@ -23,7 +23,7 @@
       </div>
       <div class="col-lg-4 ml-auto">
         <h2 class="section-title mb-3">{{candidat.nom}} {{candidat.prenom}}</h2>
-        <p class="lead">date de naissance : {{candidat.dateNaissance}}</p>
+        <p class="lead">date de naissance : {{candidat.dateNaissance | date :  "dd.MM.y"}}</p>
         <p class="lead">Email : {{candidat.email}}</p>
         <div class="form-group row">
           <label class="btn btn-default">

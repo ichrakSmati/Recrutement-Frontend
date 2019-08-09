@@ -26,12 +26,14 @@ import {
 } from "@angular/material";
 import {MDBBootstrapModule} from "angular-bootstrap-md";
 import {EntretienService} from "../services/entretien.service";
+import {SuivreComponent} from "./suivre/suivre.component";
 
 @NgModule({
   declarations: [
 EmploiComponent,
     EditorComponent,
     CandidatComponent,
+    SuivreComponent,
     EntretienComponent,
     ToastMessagesComponent,
     ReversePipe,

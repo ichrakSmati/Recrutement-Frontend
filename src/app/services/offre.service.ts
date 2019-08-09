@@ -34,10 +34,9 @@ export class OffreService {
   }
 
   public createOffre(offre) {
-    this.user.id = '1' ;
+    this.user.id= localStorage.getItem("Id");
     offre.recruteur = this.user;
     return this.http.post<Offre>(this.offreUrl, offre, this.httpOptions);
   }
-
 
 }

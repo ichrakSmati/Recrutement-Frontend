@@ -1,0 +1,36 @@
+<section class="site-section">
+  <div class="container">
+
+    <div class="row mb-5 justify-content-center">
+      <div class="col-md-7 text-center">
+        <h2 class="section-title mb-2">Ma liste des offres</h2>
+      </div>
+    </div>
+
+
+    <div class="mb-5" *ngFor = "let offre of offres" >
+      <div class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
+        <div class="col-md-2">
+          <h1>{{offre.type}}</h1>
+        </div>
+        <div class="col-md-4">
+          <h2><a href="job-single.html">{{offre.titre}}</a> </h2>
+          <p class="meta"><strong>description :</strong> {{ offre.description}}</p>
+        </div>
+        <div class="col-md-3 text-left">
+          <h3>{{offre.departement}}</h3>
+        </div>
+        <div class="col-md-2 text-md-right">
+
+          <div>500<strong class="text-black" class="fa fa-eye"></strong></div>
+          <div></div>
+          <input type="button" value="liste candidat" (click)="Liste(offre)" />
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</section>

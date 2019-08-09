@@ -58,7 +58,6 @@ export class DemandeService {
 public getdemandesparCandidatparoffre(candidatId,offreId) {
     console.log(candidatId);
     console.log(offreId);
-    console.log("ok");
   return this.http.get<Demande>(this.demandeUrl + 'demande/' + candidatId+'/'+offreId , this.httpOptions);
 }
 

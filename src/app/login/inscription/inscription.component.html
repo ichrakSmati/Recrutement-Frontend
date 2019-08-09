@@ -1,0 +1,35 @@
+  <form (ngSubmit)="login()"  [hidden]="loggedIn" class="form clearfix">
+
+
+    <div class="form-group">
+      <label >Nom</label>
+      <input type="text" [(ngModel)]="candidatToAdd.nom" name="nom" class="form-control"  placeholder="nom">
+    </div>
+    <div class="form-group">
+      <label >Prnom</label>
+      <input type="text"  [(ngModel)]="candidatToAdd.prenom" name="prenom" class="form-control"  placeholder="prenom">
+    </div>
+    <div class="form-group">
+      <label >Email</label>
+      <input type="text" [(ngModel)]="candidatToAdd.email" name="email" class="form-control"  placeholder="email">
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-form-label required">Mot de passe</label>
+      <input name="password" [(ngModel)]="candidatToAdd.pass" type="password" class="form-control" id="password" placeholder="Password" required>
+    </div>
+     <div class="form-group">
+      <label for="cv" class="col-form-label required">CV</label>
+      <input name="cv" [(ngModel)]="candidatToAdd.cv" type="text" class="form-control" id="cv" placeholder="Password" required>
+    </div>
+    <div class="form-group">
+      <label>Photo</label>
+      <input type="file"  name="photo" class="form-control"  placeholder="titre">
+    </div>
+    <div class="form-group">
+      <label >Date de naissance</label>
+
+    </div>
+    <div class="d-flex justify-content-between align-items-baseline">
+      <button type="submit" class="btn btn-primary">Sign In</button>
+    </div>
+  </form>

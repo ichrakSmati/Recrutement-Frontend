@@ -5,18 +5,41 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import {QuizComponent} from "./quiz/quiz.component";
+import {EmploiComponent} from "../front-page/emploi/emploi.component";
+import {QuestionComponent} from "./quiz/question/question.component";
+import {RecruteurComponent} from "./compte/recruteur/recruteur.component";
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
     {
-      path: 'Liste des offres',
+      path: 'liste',
       component: ECommerceComponent,
     },
     {
-      path: 'deposer une offre',
+      path: 'DeposerOffre',
       component: DashboardComponent,
+    },
+    {
+      path: 'quiz',
+      component: QuizComponent,
+      /*children: [
+        {
+          path: 'question',
+          component: QuestionComponent,
+
+        }
+      ]*/
+    },
+    {
+      path: 'quiz/:id/question',
+      component: QuestionComponent,
+    },
+    {
+      path: 'recruteurs',
+      component: RecruteurComponent,
     },
     {
       path: 'layout',

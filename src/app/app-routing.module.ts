@@ -11,6 +11,9 @@ import {
 import {FrontPageComponent} from './front-page/front-page.component';
 import {EmploiComponent} from './front-page/emploi/emploi.component';
 import {LoginComponent} from "./login/login.component";
+import {QuestionComponent} from "./pages/quiz/question/question.component";
+import {QuizComponent} from "./pages/quiz/quiz.component";
+import {InscriptionComponent} from "./login/inscription/inscription.component";
 
 const routes: Routes = [
   {
@@ -26,6 +29,10 @@ const routes: Routes = [
   {
     path: 'singin',
     component: LoginComponent,
+  },
+  {
+    path: 'inscription',
+    component: InscriptionComponent,
   },
   {
     path: 'pages',

@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
 import {
+  NbCalendarModule,
   NbChatModule,
   NbDatepickerModule,
   NbDialogModule,
@@ -29,15 +30,20 @@ import {EmploiComponent} from "./front-page/emploi/emploi.component";
 import {APP_BASE_HREF} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
+import {QuizComponent} from "./pages/quiz/quiz.component";
+import {QuizModule} from "./pages/quiz/quiz.module";
+import {InscriptionComponent} from "./login/inscription/inscription.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     FrontPageComponent,
     RechercheComponent,
-    LoginComponent
+    LoginComponent,
+    InscriptionComponent,
   ],
   imports: [
+    NbCalendarModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,

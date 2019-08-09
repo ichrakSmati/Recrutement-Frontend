@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        Quiz Information
+        <button style="float: right;" class="btn btn-primary" data-toggle="modal" data-target="#addQuestion">Ajouter question</button>
+      </nb-card-header>
+    </nb-card>
+  </div>
+</div>
+<div *ngFor="let question of questions">
+<nb-card >
+  <nb-card-header>
+    {{question.question}}
+    <button style="float: right;" class="btn btn-warning" data-toggle="modal" [attr.data-target]="'#deleteQuestion'+question.id">Supprimer</button>
+    <button style="float: right;" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#modal'+question.id">modifier</button>
+  </nb-card-header>
+  <nb-card-body class="checkbox-radio">
+    <div class="demo-items">
+      <nb-radio-group [(value)]="radioGroupValue">
+        <nb-radio *ngFor="let reponse of question.reponses"
+          [value]="'This is value 1'">
+          {{reponse.reponse}}
+        </nb-radio>
+      </nb-radio-group>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<!-------------------------------------------------------------------------- edit question ------------------------------------------------------------------------------------------->
+  <div class="modal fade" id="modal{{question.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="post">
+        <div class="modal-body">
+          <div class="col-md-12">
+            <nb-card class="inline-form-card">
+              <nb-card-header>Question</nb-card-header>
+              <nb-card-body>
+                <form class="form-inline">
+                  <input name="questionTitle" [(ngModel)]="question.question"  type="text" nbInput fullWidth placeholder="question">
+                  <input name="questionValue" [(ngModel)]="question.valeur" type="number" nbInput fullWidth placeholder="value">
+                  <button (click)="addResponseJq(question.id)" type="button" class="btn btn-info">ajouter reponse</button>
+                </form>
+                <div class="row"   [attr.id]="'reponseBlock'+question.id">
+                  <div *ngFor="let reponse of question.reponses" class="col-md-12 responseB">
+                    <form class="form-inline">
+                        <label  class="label">Reponse</label>
+                        <input name="responseTitle" [(ngModel)]="reponse.reponse" nbInput type="text"  placeholder="Repnse">
+                        <nb-checkbox>Check me out</nb-checkbox>
+                    </form>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" (click)="editQuestionJq(question)" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-------------------------------------------------------------------------- add question ------------------------------------------------------------------------------------------->
+<div class="modal fade" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="post">
+        <div class="modal-body">
+          <div class="col-md-12">
+            <nb-card class="inline-form-card">
+              <nb-card-header>Question</nb-card-header>
+              <nb-card-body>
+                <form class="form-inline">
+                  <input name="questionTitle"   [(ngModel)]="questionToAdd.question" type="text" nbInput fullWidth placeholder="question">
+                  <input name="questionValue"  [(ngModel)]="questionToAdd.valeur" type="number" nbInput fullWidth placeholder="value">
+                  <button (click)="addResponseJq(0)" type="button" class="btn btn-info">ajouter reponse</button>
+                </form>
+                <div class="row"  id="reponseBlock0">
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="cancelAddResponseJq(0)"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" (click)="editQuestionJq(questionToAdd)" class="btn btn-primary">Confirmer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-------------------------------------------------------------------------- delete question ------------------------------------------------------------------------------------------->
+<div *ngFor="let question of questions" class="modal" id="deleteQuestion{{question.id}}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Voulez vous supprimer le question <strong>{{question.question}}</strong> avec ses rréponses</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" (click)="deleteQuestion(question)" class="btn btn-primary">Confirmer</button>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { NbMenuModule } from '@nebular/theme';
-
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
+import {QuizComponent} from "./quiz/quiz.component";
+import {QuizModule} from "./quiz/quiz.module";
+import {CompteModule} from "./compte/compte.module";
+import {RecruteurComponent} from "./compte/recruteur/recruteur.component";
 
 
 @NgModule({
@@ -17,8 +20,11 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
     DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
+    QuizModule,
+    CompteModule,
   ],
   declarations: [
+    QuizComponent,
     PagesComponent,
   ],
 })

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import 'rxjs/add/operator/map';
 import {User} from "../models/user.model";
+import {Candidat} from "../models/candidat.model";
 const TOKEN_KEY = 'AuthToken';
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,14 @@ export class AuthService {
         console.log('Connexion ::');
         return this.http.post<any>('http://localhost:8088/token/generate-token', credentials);
     }
+
+    inscription(candidat : Candidat): Observable<any> {
+        const credentials = {username: candidat.email, password: candidat.pass};
+        console.log('Connexion ::');
+        return this.http.post<any>('http://localhost:8088/inscription', candidat);
+    }
+
+
 
     check() {
         console.log('check test :');

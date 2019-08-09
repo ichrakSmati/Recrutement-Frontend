@@ -21,11 +21,11 @@ export class EditorComponent implements OnInit {
   constructor(private route: ActivatedRoute ,private router: Router, private demandeService: DemandeService) {
   }
   createDemande(offre: Offre): void {
-   /* this.demandeService.createDemande(this.id, this.demande)
+    this.demandeService.createDemande(this.id, this.demande)
       .subscribe(data => {
         alert('Postuler');
         this.router.navigate(['/']);
-      });*/
+      });
   }
 
   ngOnInit() {
@@ -44,5 +44,4 @@ export class EditorComponent implements OnInit {
   }*/
 
 }
-
 }

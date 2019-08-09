@@ -44,6 +44,10 @@ export class CandidatService {
 
   }
 
+  getnombreCandidatParoffre(offre){
+    return this.http.get<number[]>(this.candidatUrl+'nombrecandidat'+ offre, this.httpOptions);
+  }
+
 }
 
 

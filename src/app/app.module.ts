@@ -26,13 +26,16 @@ import {
 import {FrontPageComponent} from "./front-page/front-page.component";
 import {FrontPageModule} from "./front-page/front-page.module";
 import {RechercheComponent} from "./front-page/recherche/recherche.component";
-import {EmploiComponent} from "./front-page/emploi/emploi.component";
 import {APP_BASE_HREF} from "@angular/common";
-import {RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {QuizComponent} from "./pages/quiz/quiz.component";
 import {QuizModule} from "./pages/quiz/quiz.module";
 import {InscriptionComponent} from "./login/inscription/inscription.component";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {FilterPipe} from "./front-page/recherche/filtre.pipe";
+import {CKEditorModule} from 'ng2-ckeditor';
+import { ReversePipe } from './front-page/toastmessage/reverse.pipe';
+import {ToastMessagesComponent} from "./front-page/toastmessage/toastmessage.component";
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import {InscriptionComponent} from "./login/inscription/inscription.component";
     RechercheComponent,
     LoginComponent,
     InscriptionComponent,
+    FilterPipe,
+    RechercheComponent,
+    LoginComponent
   ],
   imports: [
     NbCalendarModule,
@@ -56,6 +62,7 @@ import {InscriptionComponent} from "./login/inscription/inscription.component";
     NbDatepickerModule.forRoot(),
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
+    Ng2SearchPipeModule,
     NbToastrModule.forRoot(),
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',

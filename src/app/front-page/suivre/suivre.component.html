@@ -1,0 +1,44 @@
+<section class="home-section section-hero inner-page overlay bg-image"
+         style="background-image:  url('../../assets/front-end/images/hero_1.jpg');" id="home-section">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-12">
+        <div class="mb-5 text-center">
+          <h1 class="text-white font-weight-bold">Suivre votre candidature</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-section">
+  <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+
+<div class="container">
+
+  <div class="stepwizard col-md-offset-3">
+    <div class="stepwizard-row setup-panel">
+      <div class="stepwizard-step">
+        <a href="#step-1" type="button" class="btn btn-primary btn-circle"  disabled="disabled">1</a>
+         <p *ngIf="demande.etat == 'en cours'">  {{demande.etat}}</p>
+      </div>
+      <div class="stepwizard-step">
+        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+        <p *ngIf="demande.etat == 'accepté'">CV{{demande.etat}}</p>
+      </div>
+      <div class="stepwizard-step">
+        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+        <p *ngIf="demande.etat == 'en cours'"> Step 3</p>
+      </div>
+      <div class="stepwizard-step">
+        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+        <p *ngIf="demande.etat == 'en cours'"> Step 3</p>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>

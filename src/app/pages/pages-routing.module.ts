@@ -2,25 +2,40 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './DeposerOffre/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import {QuizComponent} from "./quiz/quiz.component";
 import {EmploiComponent} from "../front-page/emploi/emploi.component";
 import {QuestionComponent} from "./quiz/question/question.component";
 import {RecruteurComponent} from "./compte/recruteur/recruteur.component";
+import {ListeOffreComponent} from "./liste-offre/liste-offre.component";
+import {ListeCandidatsComponent} from "./liste-candidats/liste-candidats.component";
+import {ChoixentretienComponent} from "./choixentretien/choixentretien.component";
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
     {
-      path: 'liste',
+      path: 'DeposerOffre',
       component: ECommerceComponent,
     },
     {
-      path: 'DeposerOffre',
+      path: 'listeOffre',
+      component: ListeOffreComponent,
+    },
+    {
+      path: 'choixentretien/:id',
+      component: ChoixentretienComponent,
+    },
+    {
+      path: 'liste',
       component: DashboardComponent,
+    },
+    {
+      path: 'offre/:id',
+      component: ListeCandidatsComponent,
     },
     {
       path: 'quiz',
@@ -88,7 +103,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'DeposerOffre',
       pathMatch: 'full',
     },
     {

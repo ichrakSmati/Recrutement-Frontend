@@ -1,12 +1,10 @@
 
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Demande } from '../models/demande.model';
 import {User} from "../models/user.model";
 import {Offre} from "../models/offre.model";
 import {userInfo} from "os";
-import {Observable} from "rxjs";
-import {Candidat} from "../models/candidat.models";
 
 @Injectable()
 export class DemandeService {
@@ -14,6 +12,7 @@ export class DemandeService {
   user: User = new User();
   offre: Offre =new  Offre();
   today = new Date();
+  dateNow : Date = new Date();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,29 +20,49 @@ export class DemandeService {
       'Authorization': 'Bearer ' + window.sessionStorage.getItem('AuthToken'),
     })};
   constructor(private http: HttpClient) {}
-  private candidatUrl = 'http://localhost:8088/user/';
+  private demandeUrl = 'http://localhost:8088/demande/';
 
   // private poleUrl = '/api';
 
-  pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
-    console.log('okkkk');
-
-    const formdata: FormData = new FormData();
-
-    formdata.append('file', file);
-
-    const req = new HttpRequest('POST', 'http://localhost:8088/cv/post', formdata, {
-      reportProgress: true,
-      responseType: 'text'
-    });
-
-    return this.http.request(req);
+  public getdemandes() {
+    return this.http.get<Demande[]>(this.demandeUrl, this.httpOptions);
   }
-  getCandidatId(id){
-    return this.http.get<User>(this.candidatUrl + '/id/' + id, this.httpOptions);
-
+  public getoffre(id) {
+    return this.http.get<Demande>(this.demandeUrl + id, this.httpOptions);
   }
+  public createDemande(id, demande: Demande) {
 
+  this.offre.id = id;
+  this.user.id= localStorage.getItem("Id");
+  demande.etat= 'en cours';
+    demande.candidat=this.user;
+    demande.offre= this.offre;
+    demande.date = this.dateNow.toISOString();
+    //demande.date = this.today.getFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate();
+    return this.http.post<Demande>(this.demandeUrl, demande, this.httpOptions);
+  }
+  public getdemandesparOffre(id) {
+    return this.http.get<Demande[]>(this.demandeUrl + id , this.httpOptions);
+  }
+  public accepte(demande) {
+    console.log(demande);
+    return this.http.put<Demande>(this.demandeUrl + 'accepte' ,  demande, this.httpOptions );
+  }
+  public refuser(demande) {
+    console.log(demande);
+    return this.http.put<Demande>(this.demandeUrl + 'refuser' ,  demande, this.httpOptions );
+  }
+  public getdemandesparCandidat(id) {
+    return this.http.get<Demande[]>(this.demandeUrl + 'candidat/' + id , this.httpOptions);
+  }
+public getdemandesparCandidatparoffre(candidatId,offreId) {
+    console.log(candidatId);
+    console.log(offreId);
+  return this.http.get<Demande>(this.demandeUrl + 'demande/' + candidatId+'/'+offreId , this.httpOptions);
 }
 
-
+  public changeEtatDemande(demande) {
+    demande.etat="date de l'entretien choisi";
+    return this.http.put<Demande>(this.demandeUrl + 'changeEtat' ,  demande, this.httpOptions );
+  }
+}

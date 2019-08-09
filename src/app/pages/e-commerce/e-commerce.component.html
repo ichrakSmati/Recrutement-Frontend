@@ -1,4 +1,23 @@
-<div class="row">
-  <ngx-infinite-list></ngx-infinite-list>
-</div>
+<div class="infinite-cards row">
 
+  <div class="col-md-12 col-lg-9 col-xxxl-6">
+    <nb-card>
+      <nb-card-header>Window Scroll</nb-card-header>
+        <div class="col-md-12 col-lg-6 col-xxxl-6">
+          <nb-card class="list-card" size="small">
+            <nb-card-header>Users</nb-card-header>
+            <nb-list
+              nbInfiniteList
+              listenWindowScroll
+              [threshold]="500"
+              (bottomThreshold)="loadNext(secondCard)">
+              <nb-list-item *ngFor="let user of users">
+                <nb-user [name]="user.name" [title]="user.title">
+                </nb-user>
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
+        </div>
+    </nb-card>
+  </div>
+</div>

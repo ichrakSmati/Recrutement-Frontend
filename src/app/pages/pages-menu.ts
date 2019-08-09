@@ -2,15 +2,15 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'E-commerce',
+    title: 'Liste candidat',
     icon: 'shopping-cart-outline',
-    link: '/pages/dashboard',
+    link: '/pages/DeposerOffre',
     home: true,
   },
   {
-    title: 'IoT Dashboard',
+    title: 'deposer offre',
     icon: 'home-outline',
-    link: '/pages/iot-dashboard',
+    link: '/pages/liste',
   },
   {
     title: 'Quiz',
@@ -254,4 +254,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+  {
+    title: 'liste offre',
+    icon: 'home-outline',
+    link: '/pages/listeOffre',
+  }
 ];

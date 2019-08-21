@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import 'rxjs/add/operator/map';
 import {User} from "../models/user.model";
-import {Candidat} from "../models/candidat.model";
+import {Candidat} from "../models/candidat.models";
 const TOKEN_KEY = 'AuthToken';
 @Injectable({
   providedIn: 'root'
@@ -65,12 +65,22 @@ export class AuthService {
     }
 
     inscription(candidat : Candidat): Observable<any> {
-        const credentials = {username: candidat.email, password: candidat.pass};
         console.log('Connexion ::');
         return this.http.post<any>('http://localhost:8088/inscription', candidat);
     }
 
+    public requestPwd(email) {
+      return this.http.get<boolean>('http://localhost:8088/pwd/email/'+email);
+    }
 
+    public verifyToken(token){
+      return this.http.get<User>('http://localhost:8088/pwd/verifyToken/'+token);
+    }
+
+    public resetPwd(token,pwd){
+      let params : String[] = [token, pwd];
+      return this.http.post<any>('http://localhost:8088/pwd/reset',params);
+    }
 
     check() {
         console.log('check test :');

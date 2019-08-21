@@ -27,17 +27,21 @@ import {
 import {MDBBootstrapModule} from "angular-bootstrap-md";
 import {EntretienService} from "../services/entretien.service";
 import {SuivreComponent} from "./suivre/suivre.component";
+import {RepondreQuizComponent} from "./repondreQuiz/repondreQuiz.component";
+import {QuizService} from "../service/quiz.service";
+import {QuestionService} from "../service/question.service";
 
 @NgModule({
   declarations: [
-EmploiComponent,
+    EmploiComponent,
     EditorComponent,
     CandidatComponent,
     SuivreComponent,
     EntretienComponent,
     ToastMessagesComponent,
     ReversePipe,
-    ReponseEntretienComponent
+    ReponseEntretienComponent,
+    RepondreQuizComponent,
   ],
   imports: [
     AngularFireDatabaseModule,
@@ -58,7 +62,9 @@ EmploiComponent,
     DemandeService,
     CandidatService,
     ToastService,
-    EntretienService
+    EntretienService,
+    QuizService,
+    QuestionService,
   ]
 })
 export class FrontPageModule { }

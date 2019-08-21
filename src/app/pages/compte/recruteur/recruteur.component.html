@@ -21,7 +21,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let recruteur of recruteurs">
-              <td><img class="img-circle" src="../../../../assets/images/alan.png" style="width: 50px ; height: 50px;" /></td>
+              <td><img class="img-circle" src="\assets\Uploads\{{ recruteur.photo }}" style="width: 50px ; height: 50px;" /></td>
               <td>{{recruteur.nom}}</td>
               <td>{{recruteur.prenom}}</td>
               <td>{{recruteur.email}}</td>
@@ -69,7 +69,7 @@
           </div>
           <div class="form-group">
             <label>Photo</label>
-            <input type="file"  name="photo" class="form-control"  placeholder="titre">
+            <input type="file"  name="photo" (change)="selectFile($event)" class="form-control"  placeholder="titre">
           </div>
         <div class="form-group">
           <label >Date de naissance</label>
@@ -130,7 +130,7 @@
           </div>
           <div class="form-group">
             <label>Photo</label>
-            <input type="file"  name="photo" class="form-control"  placeholder="titre">
+            <input type="file"  (change)="selectFile($event)" name="photo" class="form-control"  placeholder="titre">
           </div>
           <div class="form-group">
             <label >Date de naissance</label>

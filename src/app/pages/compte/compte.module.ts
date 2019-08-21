@@ -16,6 +16,8 @@ import {Ng2SmartTableModule} from "ng2-smart-table";
 import {CompteService} from "../../service/compte.service";
 import {RecruteurComponent} from "./recruteur/recruteur.component";
 import {MatButtonModule, MatIconModule} from "@angular/material";
+import {ProfilComponent} from "./profil/profil.component";
+import {UploadService} from "../../service/upload.service";
 
 
 @NgModule({
@@ -49,10 +51,12 @@ import {MatButtonModule, MatIconModule} from "@angular/material";
     NbInputModule,
   ],
   declarations: [
-  RecruteurComponent,
+    RecruteurComponent,
+    ProfilComponent,
   ],
   providers: [
     CompteService,
+    UploadService,
   ],
 })
 export class CompteModule {

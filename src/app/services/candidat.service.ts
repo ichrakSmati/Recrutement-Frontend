@@ -40,7 +40,7 @@ export class CandidatService {
     return this.http.request(req);
   }
   getCandidatId(id){
-    return this.http.get<User>(this.candidatUrl + '/id/' + id, this.httpOptions);
+    return this.http.get<User>(this.candidatUrl + 'id/' + id, this.httpOptions);
 
   }
 

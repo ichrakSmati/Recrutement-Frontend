@@ -60,7 +60,7 @@ export class QuestionComponent implements  OnInit {
       '<form class="form-inline">' +
       '                        <label  class="label">Reponse</label>' +
       '                        <input name="responseTitle'+this.count+'" id="res'+this.count+'" nbInput type="text"  placeholder="Repnse">\n' +
-      '                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">' +
+      '                         <input type="checkbox" id="cheked'+this.count+'" name="isActive" >Is Right' +
       '                    </form>' +
       '</div>';
     this.count++;
@@ -69,14 +69,13 @@ export class QuestionComponent implements  OnInit {
 
   editQuestionJq(question){
     console.log(question);
-    question.active=true;
     let i: number = 0;
     while (i < this.count) {
       console.log( "Block statement execution no." + i );
       let reponse: Reponse= new Reponse();
       reponse.reponse= $('#res'+i).val();
+      reponse.validate= $('#cheked'+i).is(":checked");
       reponse.active = true;
-      reponse.validate=true;
       question.reponses.push(reponse);
       i++;
     }

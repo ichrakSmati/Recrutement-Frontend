@@ -3,28 +3,60 @@ import {OffreService} from "../../services/offre.service";
 import {Offre} from "../../models/offre.model";
 import {Router} from "@angular/router";
 import { DatePipe } from '@angular/common';
+import * as $ from "jquery";
+import {DemandeService} from "../../services/demande.service";
 
 @Component({
   selector: 'recherche',
   templateUrl: './recherche.component.html'
-
-
 })
 export class RechercheComponent implements OnInit {
-  myDate = new Date();
+  details: string='';
+  buttonPostuler:string='';
+  offres: Offre[];
+  items: string[] ;
+  departements: string[] = new Array();
+  contrats: string[] = new Array() ;
+  uniqueDepartements : string[];
+  uniqueContrats : string[];
+  constructor(private router:Router, private offreService: OffreService, private demandeService: DemandeService, private datePipe: DatePipe) {
+  }
 
-  constructor(private router:Router, private offreService: OffreService,private datePipe: DatePipe) {
-}
-
-offres: Offre[];
-items: string[] ;
-ngOnInit()
-  {
-   // this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+  ngOnInit() {
     this.offreService.getoffres()
       .subscribe(data => {
+
         this.offres = data;
+        this.fill(this.offres[0]);
+        for (let offre of this.offres ){
+          offre.days=Math.ceil((Math.abs(new Date().getTime() - new Date(offre.dateAjout).getTime())) / (1000 * 3600 * 24));
+          this.departements.push(offre.departement);
+          this.contrats.push(offre.type);
+        }
+         this.uniqueDepartements = [...new Set(this.departements)];
+         this.uniqueContrats = [...new Set(this.contrats)];
       });
   }
 
+
+  fill(offre){
+    this.demandeService.checkDemandeExist(offre.id, localStorage.getItem("Id")).subscribe(data => {
+      if(data == false){
+        this.buttonPostuler="<a class='btn btn-primary btn-lg' href='editor/"+offre.id+"' role='button'>postuler</a>"
+      }else{
+        this.buttonPostuler="<a class='btn btn-primary btn-lg' href='/emploi' role='button' >List Candidature</a>";
+      }
+      this.details="<div class='jumbotron'>\n" +
+        "      <h1 class='display-5'>"+offre.titre+"</h1>\n" +
+        "      <p class='lead'>Contrat : "+offre.type+" | Ville : "+offre.ville+" | Salaire: "+offre.salaire+" | Date de debut: "+offre.dateDebut+"</p>\n" +
+        "      <hr class='my-4'>\n" +
+        "      <p>"+offre.description+"</p>\n" +
+        "      <p class='lead'>\n" +
+        this.buttonPostuler +
+        "      </p>\n" +
+        "    </div>\n" +
+        "  </div>";
+      $('#details').find('.jumbotron').remove().end().append(this.details);
+    });
+  }
 }

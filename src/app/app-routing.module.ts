@@ -14,6 +14,14 @@ import {LoginComponent} from "./login/login.component";
 import {QuestionComponent} from "./pages/quiz/question/question.component";
 import {QuizComponent} from "./pages/quiz/quiz.component";
 import {InscriptionComponent} from "./login/inscription/inscription.component";
+import {RechercheComponent} from "./front-page/recherche/recherche.component";
+import {CandidatComponent} from "./front-page/candidat/candidat.component";
+import {ReponseEntretienComponent} from "./front-page/reponse-entretien/reponse-entretien.component";
+import {SuivreComponent} from "./front-page/suivre/suivre.component";
+import {EditorComponent} from "./front-page/editor/editor.component";
+import {ChangePwdComponent} from "./login/changePwd/changePwd.component";
+import {RequestPwdComponent} from "./login/RequestPwd/requestPwd.component";
+import {RepondreQuizComponent} from "./front-page/repondreQuiz/repondreQuiz.component";
 
 const routes: Routes = [
   {
@@ -44,11 +52,24 @@ const routes: Routes = [
         path: 'editor/:id',
         component: EditorComponent,
       },
+      {
+        path: 'quiz/:quizId/demande/:demandeId',
+        //path: 'quiz/:quizId',
+        component: RepondreQuizComponent,
+      },
     ]
   },
   {
     path: 'singin',
     component: LoginComponent,
+  },
+  {
+    path: 'login/changepwd/:token',
+    component: ChangePwdComponent,
+  },
+  {
+    path: 'login/requestpwd',
+    component: RequestPwdComponent,
   },
   {
     path: 'inscription',

@@ -36,6 +36,8 @@ import {FilterPipe} from "./front-page/recherche/filtre.pipe";
 import {CKEditorModule} from 'ng2-ckeditor';
 import { ReversePipe } from './front-page/toastmessage/reverse.pipe';
 import {ToastMessagesComponent} from "./front-page/toastmessage/toastmessage.component";
+import {RequestPwdComponent} from "./login/RequestPwd/requestPwd.component";
+import {ChangePwdComponent} from "./login/changePwd/changePwd.component";
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import {ToastMessagesComponent} from "./front-page/toastmessage/toastmessage.com
     InscriptionComponent,
     FilterPipe,
     RechercheComponent,
-    LoginComponent
+    LoginComponent,
+    RequestPwdComponent,
+    ChangePwdComponent,
   ],
   imports: [
     NbCalendarModule,

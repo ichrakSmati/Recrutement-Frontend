@@ -32,14 +32,14 @@ export class LoginComponent {
         this.authService.getUserAllData().subscribe(
           data => {
             this.user = data;
-            //sessionStorage.setItem("ROLE", this.user.role.role);
-            sessionStorage.setItem("Id", this.user.id);
-            sessionStorage.setItem("Nom", this.user.nom);
-            sessionStorage.setItem("Prenom", this.user.prenom);
-            sessionStorage.setItem("Email", this.user.email);
-            sessionStorage.setItem("DateNaissance", this.user.dateNaissance);
-            sessionStorage.setItem("Photo", this.user.photo);
-            console.log(sessionStorage.getItem("ROLE"));
+            localStorage.setItem("ROLE", this.user.role.role);
+            localStorage.setItem("Id", this.user.id);
+            localStorage.setItem("Nom", this.user.nom);
+            localStorage.setItem("Prenom", this.user.prenom);
+            localStorage.setItem("Email", this.user.email);
+            localStorage.setItem("DateNaissance", this.user.dateNaissance);
+            localStorage.setItem("Photo", this.user.photo);
+            console.log(localStorage.getItem("ROLE"));
             if(this.user.role.role == "ROLE_ADMIN" || this.user.role.role == "ROLE_RECRUTEUR" ) {
               this.router.navigate(['/pages/dashboard']);
             }

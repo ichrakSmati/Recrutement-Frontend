@@ -20,12 +20,20 @@ export class CompteService {
     return this.http.get<Recruteur[]>(this.userUrl+'recruteurs', this.httpOptions);
   }
 
+  public getConnectedRecruteur() {
+    return this.http.get<Recruteur>(this.userUrl+'recruteur/'+localStorage.getItem("Email"), this.httpOptions);
+  }
+
   public creatRecruteur(recruteur) {
     return this.http.post<Recruteur>(this.userUrl+'recruteurs', recruteur, this.httpOptions);
   }
 
   public editRecruteur(recruteur) {
     return this.http.put<Recruteur>(this.userUrl+'recruteurs', recruteur, this.httpOptions);
+  }
+
+  public chanePwd(id, oldPwd, newPwd) {
+    return this.http.get<Recruteur>(this.userUrl+'pwd/'+id+'/'+oldPwd+'/'+newPwd, this.httpOptions);
   }
 
 }

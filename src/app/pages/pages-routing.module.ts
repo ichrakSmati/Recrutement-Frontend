@@ -12,6 +12,7 @@ import {RecruteurComponent} from "./compte/recruteur/recruteur.component";
 import {ListeOffreComponent} from "./liste-offre/liste-offre.component";
 import {ListeCandidatsComponent} from "./liste-candidats/liste-candidats.component";
 import {ChoixentretienComponent} from "./choixentretien/choixentretien.component";
+import {ProfilComponent} from "./compte/profil/profil.component";
 
 const routes: Routes = [{
   path: '',
@@ -40,13 +41,6 @@ const routes: Routes = [{
     {
       path: 'quiz',
       component: QuizComponent,
-      /*children: [
-        {
-          path: 'question',
-          component: QuestionComponent,
-
-        }
-      ]*/
     },
     {
       path: 'quiz/:id/question',
@@ -55,6 +49,10 @@ const routes: Routes = [{
     {
       path: 'recruteurs',
       component: RecruteurComponent,
+    },
+    {
+      path: 'profil',
+      component: ProfilComponent,
     },
     {
       path: 'layout',

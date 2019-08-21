@@ -65,4 +65,8 @@ public getdemandesparCandidatparoffre(candidatId,offreId) {
     demande.etat="date de l'entretien choisi";
     return this.http.put<Demande>(this.demandeUrl + 'changeEtat' ,  demande, this.httpOptions );
   }
+
+  checkDemandeExist(offreId, userId){
+    return this.http.get<boolean>(this.demandeUrl + 'check/'+offreId +'/'+userId, this.httpOptions );
+  }
 }

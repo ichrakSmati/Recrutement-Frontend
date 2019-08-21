@@ -1,5 +1,4 @@
-<section class="home-section section-hero overlay bg-image" style="background-image: url('../../assets/front-end/images/hero_1.jpg');" id="home-section">
-
+<section class="home-section section-hero overlay bg-image" style="background-image: url('../../assets/front-end/images/hero_1.jpg');  height: 600px;" id="home-section">
   <div class="container">
     <div class="row align-items-center justify-content-center">
       <div class="col-md-12">
@@ -14,12 +13,12 @@
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
               <select class="form-control" name="term" [(ngModel)]="term" id="type" data-placeholder="Selectionner type de l'offre">
-                <option *ngFor ="let offre of offres"  [ngValue]="offre.type" >{{offre.type}}</option>
+                <option *ngFor ="let contrat of uniqueContrats"  [ngValue]="contrat" >{{contrat}}</option>
               </select>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
               <select class="form-control" name="dep" [(ngModel)]="dep" id="departement" data-placeholder="Selectionner departement">
-                <option *ngFor ="let offre of offres"  [ngValue]="offre.departement" >{{offre.departement}}</option>
+                <option *ngFor ="let departement of uniqueDepartements"  [ngValue]="departement" >{{departement}}</option>
               </select>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
@@ -30,9 +29,8 @@
       </div>
     </div>
   </div>
-
-
 </section>
+
 <section class="site-section">
   <div class="container">
 
@@ -42,44 +40,30 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
 
-    <div class="mb-5" *ngFor = "let offre of (offres| filter:dep:term:titre)" >
-      <div class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
-        <div class="col-md-2">
-           <h1>{{offre.type}}</h1>
-        </div>
-        <div class="col-md-4">
-          <h2><a href="job-single.html">{{offre.titre}}</a> </h2>
-          <p class="meta"><strong>description :</strong> {{ offre.description}}</p>
-        </div>
-        <div class="col-md-3 text-left">
-          <h3>{{offre.departement}}</h3>
-        </div>
-        <div class="col-md-2 text-md-right">
-          <div><strong class="text-black">{{offre.salaire}} DT </strong></div>
-          <div></div>
-          <span class="badge badge-primary px-2 py-1 mb-3" ><a href="/editor">Postuler</a></span>
-         <button [routerLink]="['/editor', offre.id]" type="button" >Postule</button>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="row pagination-wrap">
-
-      <div class="col-md-6 text-center text-md-left">
-        <div class="custom-pagination ml-auto">
-          <a href="#" class="prev">Previous</a>
-          <div class="d-inline-block">
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
+          <div class="list-group">
+            <a *ngFor = "let offre of (offres| filter:dep:term:titre)" (click)="fill(offre)" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{offre.titre}}</h5>
+                <small>{{offre.days}} days ago</small>
+              </div>
+              <p class="mb-1">Type : {{offre.type}}</p>
+              <p class="mb-1">Salaire : {{offre.salaire}}</p>
+              <p class="mb-1">Ville : {{offre.ville}}</p>
+            </a>
           </div>
-          <a href="#" class="next">Next</a>
+
         </div>
       </div>
+
+      <div class="col-md-6" id="details">
+        <div class="jumbotron"></div>
+      </div>
     </div>
+
 
   </div>
 </section>

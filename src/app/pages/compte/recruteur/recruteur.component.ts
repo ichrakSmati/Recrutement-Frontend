@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Recruteur} from "../../../models/recruteur.model";
 import {CompteService} from "../../../service/compte.service";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {UploadService} from "../../../service/upload.service";
+import {Role} from "../../../models/role.model";
 
 
 
@@ -14,8 +17,14 @@ export class RecruteurComponent implements  OnInit {
   recruteurs: Recruteur[];
   date = new Date();
   recToAdd : Recruteur = new  Recruteur();
+  selectedFiles: FileList;
+  currentFileUpload: File = null;
+  progress: { percentage: number } = { percentage: 0 };
 
-  constructor(private router: Router, private compteService: CompteService,private route: ActivatedRoute) {
+  constructor(private router: Router, private compteService: CompteService, private uploadService: UploadService ,private route: ActivatedRoute) {
+    this.recToAdd.role= new Role();
+    this.recToAdd.role.id="2";
+    this.recToAdd.role.role="ROLE_RECRUTEUR";
   }
 
   ngOnInit(): void {
@@ -26,8 +35,10 @@ export class RecruteurComponent implements  OnInit {
   }
 
   createRecruteur(){
+    this.uploadImage();
     this.recToAdd.pass="123";
     this.recToAdd.dateNaissance=this.date;
+    this.recToAdd.photo=this.currentFileUpload.name;
     this.recToAdd.etat=false;
     console.log(this.recToAdd);
     this.compteService.creatRecruteur(this.recToAdd)
@@ -37,6 +48,8 @@ export class RecruteurComponent implements  OnInit {
   }
 
   editRecruteur(recruteur){
+    this.uploadImage();
+    recruteur.photo=this.currentFileUpload.name;
       recruteur.dateNaissance=this.date;
       this.compteService.editRecruteur(recruteur)
         .subscribe(data => {
@@ -57,4 +70,21 @@ export class RecruteurComponent implements  OnInit {
       });
   }
 
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  uploadImage() {
+    this.progress.percentage = 0;
+    this.currentFileUpload = this.selectedFiles.item(0);
+    console.log(this.currentFileUpload);
+    this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress.percentage = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+        console.log('File is completely uploaded!');
+      }
+    });
+    this.selectedFiles = undefined;
+  }
 }

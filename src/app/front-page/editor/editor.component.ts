@@ -5,6 +5,8 @@ import {DemandeService} from "../../services/demande.service";
 import {switchMap} from "rxjs/operators";
 import {Offre} from "../../models/offre.model";
 import {any} from "codelyzer/util/function";
+import {Quiz} from "../../models/quiz.model";
+import {OffreService} from "../../services/offre.service";
 
 @Component({
   selector: 'editor',
@@ -18,14 +20,8 @@ export class EditorComponent implements OnInit {
   private sub: any;
   id:number;
   private selectedoffre: Offre;
-  constructor(private route: ActivatedRoute ,private router: Router, private demandeService: DemandeService) {
-  }
-  createDemande(offre: Offre): void {
-    this.demandeService.createDemande(this.id, this.demande)
-      .subscribe(data => {
-        alert('Postuler');
-        this.router.navigate(['/']);
-      });
+
+  constructor(private route: ActivatedRoute ,private router: Router,private offreService: OffreService , private demandeService: DemandeService) {
   }
 
   ngOnInit() {
@@ -36,12 +32,20 @@ export class EditorComponent implements OnInit {
     };
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
-  });
+    });
+    this.offreService.getoffre(this.id).subscribe(data=>{
+      this.selectedoffre=data;
+    });
+    console.log(this.selectedoffre);
+  }
 
-  /*onChange($event: any) : void {
-    console.log('onChange');
-    //this.log += new Date() + "<br />";
-  }*/
+  createDemande(offre: Offre): void {
+    this.demandeService.createDemande(this.id, this.demande)
+      .subscribe(data => {
+        //this.router.navigate(['quiz/'+ this.selectedoffre.quiz.id]);
+        this.router.navigate(['quiz/'+ this.selectedoffre.quiz.id+'/demande/'+data.id]);
+      });
+  }
 
-}
+
 }

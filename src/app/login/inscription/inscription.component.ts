@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {AuthService} from "../../service/auth.service";
 import {Router} from '@angular/router';
 import { TokenStorage } from '../../service/token.storage';
-import {Candidat} from "../../models/candidat.model";
+import {Candidat} from "../../models/candidat.models";
 import {Role} from "../../models/role.model";
 
 @Component({
@@ -38,12 +38,12 @@ export class InscriptionComponent {
 
       },
       () => {
-        sessionStorage.setItem("Nom", this.candidatToAdd.nom);
-        sessionStorage.setItem("Prenom", this.candidatToAdd.prenom);
-        sessionStorage.setItem("Email", this.candidatToAdd.email);
+        localStorage.setItem("Nom", this.candidatToAdd.nom);
+        localStorage.setItem("Prenom", this.candidatToAdd.prenom);
+        localStorage.setItem("Email", this.candidatToAdd.email);
         //sessionStorage.setItem("DateNaissance", this.candidatToAdd.dateNaissance);
-        sessionStorage.setItem("Photo", this.candidatToAdd.photo);
-        sessionStorage.setItem("ROLE", this.candidatToAdd.role.role)
+        localStorage.setItem("Photo", this.candidatToAdd.photo);
+        localStorage.setItem("ROLE", this.candidatToAdd.role.role)
         this.router.navigate(['/emploi']);
 
       }

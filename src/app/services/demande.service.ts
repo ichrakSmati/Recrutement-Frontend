@@ -27,6 +27,9 @@ export class DemandeService {
   public getdemandes() {
     return this.http.get<Demande[]>(this.demandeUrl, this.httpOptions);
   }
+  public getdemande(id) {
+    return this.http.get<Demande>(this.demandeUrl + 'entretien/' + id, this.httpOptions);
+  }
   public getoffre(id) {
     return this.http.get<Demande>(this.demandeUrl + id, this.httpOptions);
   }
@@ -38,7 +41,6 @@ export class DemandeService {
     demande.candidat=this.user;
     demande.offre= this.offre;
     demande.date = this.dateNow.toISOString();
-    //demande.date = this.today.getFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate();
     return this.http.post<Demande>(this.demandeUrl, demande, this.httpOptions);
   }
   public getdemandesparOffre(id) {
@@ -62,7 +64,8 @@ public getdemandesparCandidatparoffre(candidatId,offreId) {
 }
 
   public changeEtatDemande(demande) {
-    demande.etat="date de l'entretien choisi";
+    console.log(demande);
+   // demande.etat="date de l'entretien choisi";
     return this.http.put<Demande>(this.demandeUrl + 'changeEtat' ,  demande, this.httpOptions );
   }
 }

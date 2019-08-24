@@ -8,12 +8,10 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbListModule,
-  NbIconModule, NbCheckboxModule,
+  NbIconModule, NbCheckboxModule, NbDatepickerModule, NbCalendarModule,
 } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
-
 import { ThemeModule } from '../../@theme/theme.module';
-import { DashboardComponent } from './dashboard.component';
 import { FormsModule } from '@angular/forms';
 import {FormLayoutsComponent} from "../forms/form-layouts/form-layouts.component";
 import {FormInputsComponent} from "../forms/form-inputs/form-inputs.component";
@@ -22,6 +20,8 @@ import {OffreService} from "../../services/offre.service";
 
 @NgModule({
   imports: [
+    NbDatepickerModule,
+    NbCalendarModule,
     FormsModule,
     ThemeModule,
     NbCardModule,
@@ -38,12 +38,11 @@ import {OffreService} from "../../services/offre.service";
     NbCheckboxModule,
   ],
   declarations: [
-    DashboardComponent,
     FormLayoutsComponent,
-  FormInputsComponent,
+    FormInputsComponent,
   ],
   providers: [
     OffreService,
 ],
 })
-export class DashboardModule { }
+export class DeposerOffreModule { }

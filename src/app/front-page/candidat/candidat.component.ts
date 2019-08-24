@@ -11,19 +11,17 @@ import {User} from "../../models/user.model";
   styleUrls: ['./candidat.component.scss']
 })
 export class CandidatComponent implements OnInit{
-  progress: { percentage: number } = { percentage: 0 };
 
+  progress: { percentage: number } = { percentage: 0 };
   selectedFiles: FileList;
   currentFileUpload: File = null;
-  candidat: User;
-  candidatId: number;
-  constructor(private route: ActivatedRoute ,private candidatService: CandidatService) { }
-ngOnInit(){
+  public candidat: User;
 
-  this.route.params.forEach((params: Params) => {
-    this.candidatId = Number.parseInt(params['id']);
-  });
-  this.candidatService.getCandidatId(this.candidatId)
+  constructor(private route: ActivatedRoute ,private candidatService: CandidatService) { }
+
+  ngOnInit(){
+
+  this.candidatService.getCandidatId(localStorage.getItem('Id'))
     .subscribe(data => {
       console.log(data);
       this.candidat = data;

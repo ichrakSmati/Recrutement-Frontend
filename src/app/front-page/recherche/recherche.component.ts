@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import { DatePipe } from '@angular/common';
 import * as $ from "jquery";
 import {DemandeService} from "../../services/demande.service";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'recherche',
@@ -19,13 +20,12 @@ export class RechercheComponent implements OnInit {
   contrats: string[] = new Array() ;
   uniqueDepartements : string[];
   uniqueContrats : string[];
-  constructor(private router:Router, private offreService: OffreService, private demandeService: DemandeService, private datePipe: DatePipe) {
+  constructor(private router:Router, private offreService: OffreService, private demandeService: DemandeService, private datePipe: DatePipe, private  authService: AuthService) {
   }
 
   ngOnInit() {
-    this.offreService.getoffres()
+    this.offreService.getoffresDisponible()
       .subscribe(data => {
-
         this.offres = data;
         this.fill(this.offres[0]);
         for (let offre of this.offres ){
@@ -40,23 +40,36 @@ export class RechercheComponent implements OnInit {
 
 
   fill(offre){
-    this.demandeService.checkDemandeExist(offre.id, localStorage.getItem("Id")).subscribe(data => {
-      if(data == false){
-        this.buttonPostuler="<a class='btn btn-primary btn-lg' href='editor/"+offre.id+"' role='button'>postuler</a>"
-      }else{
-        this.buttonPostuler="<a class='btn btn-primary btn-lg' href='/emploi' role='button' >List Candidature</a>";
-      }
-      this.details="<div class='jumbotron'>\n" +
-        "      <h1 class='display-5'>"+offre.titre+"</h1>\n" +
-        "      <p class='lead'>Contrat : "+offre.type+" | Ville : "+offre.ville+" | Salaire: "+offre.salaire+" | Date de debut: "+offre.dateDebut+"</p>\n" +
-        "      <hr class='my-4'>\n" +
-        "      <p>"+offre.description+"</p>\n" +
-        "      <p class='lead'>\n" +
-        this.buttonPostuler +
-        "      </p>\n" +
-        "    </div>\n" +
-        "  </div>";
-      $('#details').find('.jumbotron').remove().end().append(this.details);
-    });
+    if(this.authService.getLoggedin()== "false"){
+      this.buttonPostuler="<a class='btn btn-primary btn-lg' href='editor/"+offre.id+"' role='button'>postuler</a>";
+      this.showDetails(this.buttonPostuler, offre);
+    }else{
+      this.demandeService.checkDemandeExist(offre.id, localStorage.getItem("Id")).subscribe(data => {
+        if(data == false){
+          this.buttonPostuler="<a class='btn btn-primary btn-lg' href='editor/"+offre.id+"' role='button'>postuler</a>"
+        }else{
+          this.buttonPostuler="<a class='btn btn-primary btn-lg' href='/emploi' role='button' >List Candidature</a>";
+        }
+        this.showDetails(this.buttonPostuler, offre);
+      });
+    }
+  }
+
+  showDetails(buttonString: string, offre: Offre){
+    this.details="<div class='jumbotron'>\n" +
+      "      <h1 class='display-5'>"+offre.titre+"</h1>\n" +
+      "      <p class='lead'>Contrat : "+offre.type+" | Ville : "+offre.ville+" | Salaire: "+offre.salaire+" | Date de debut: "+offre.dateDebut+"</p>\n" +
+      "      <hr class='my-4'>\n" +
+      "      <p>"+offre.description+"</p>\n" +
+      "      <p class='lead'>\n" +
+      this.buttonPostuler +
+      "      </p>\n" +
+      "    </div>\n" +
+      "  </div>";
+    $('#details').find('.jumbotron').remove().end().append(this.details);
+  }
+
+  nbrViewParOffre(){
+
   }
 }

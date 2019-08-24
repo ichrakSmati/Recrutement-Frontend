@@ -19,7 +19,7 @@
               <tbody *ngFor = "let demande of demandes">
               <tr>
                 <td>
-                  <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
+                  <img src="\assets\Uploads\{{demande.candidat.photo}}" alt="">
                   <a href="#" class="user-link">{{demande.candidat.nom}}  {{demande.candidat.prenom}}</a>
                   <span class="user-subhead">{{demande.date}}</span>
                 </td>

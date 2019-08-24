@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {EmploiComponent} from "./emploi/emploi.component";
+import {EmploiComponent, TruncatePipe} from "./emploi/emploi.component";
 import { EditorComponent } from './editor/editor.component';
 import { CandidatComponent } from './candidat/candidat.component';
 import {OffreService} from "../services/offre.service";
@@ -30,6 +30,7 @@ import {SuivreComponent} from "./suivre/suivre.component";
 import {RepondreQuizComponent} from "./repondreQuiz/repondreQuiz.component";
 import {QuizService} from "../service/quiz.service";
 import {QuestionService} from "../service/question.service";
+import {NbAccordionModule} from "@nebular/theme";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {QuestionService} from "../service/question.service";
     ReversePipe,
     ReponseEntretienComponent,
     RepondreQuizComponent,
+    TruncatePipe,
   ],
   imports: [
     AngularFireDatabaseModule,
@@ -53,8 +55,7 @@ import {QuestionService} from "../service/question.service";
     MatDialogModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MDBBootstrapModule.forRoot()
-
+    MDBBootstrapModule.forRoot(),
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},

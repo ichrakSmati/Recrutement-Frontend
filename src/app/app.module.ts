@@ -38,6 +38,17 @@ import { ReversePipe } from './front-page/toastmessage/reverse.pipe';
 import {ToastMessagesComponent} from "./front-page/toastmessage/toastmessage.component";
 import {RequestPwdComponent} from "./login/RequestPwd/requestPwd.component";
 import {ChangePwdComponent} from "./login/changePwd/changePwd.component";
+import {RoleGuardService} from "./login/role-guard.service";
+import {JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
+import {AuthGuard} from "./login";
+import {UploadService} from "./service/upload.service";
+const JWT_Module_Options: JwtModuleOptions = {
+  config: {
+    tokenGetter: () => {
+      return localStorage.getItem("access_token");
+    }
+  }
+};
 
 @NgModule({
   declarations: [
@@ -72,8 +83,11 @@ import {ChangePwdComponent} from "./login/changePwd/changePwd.component";
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     CoreModule.forRoot(),
-  ],providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+    JwtModule.forRoot(JWT_Module_Options),
+  ],
+  providers: [RoleGuardService,AuthGuard,UploadService,{provide: APP_BASE_HREF, useValue : '/' }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
+

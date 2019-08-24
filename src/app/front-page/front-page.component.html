@@ -12,17 +12,18 @@
         </div>
         <nav class="mx-auto site-navigation">
           <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-            <li><a href="/" class="nav-link active">offre d'emploi</a></li>
+            <li><a href="/" class="nav-link active">Carrière</a></li>
             <li><a href="/emploi">Mon Espace</a></li>
-            <li><a href="/candidat">About</a></li>
-            <li><a href="services.html">Services</a></li>
+            <li><a href="/candidat">Profil</a></li>
+            <li><a href="services.html">Qui Somme nous</a></li>
             <li><a href="/pages">Blog</a></li>
           </ul>
         </nav>
 
         <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
           <div class="ml-auto">
-            <a href="/singin" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-line-profile-male"></span>Connexion</a>
+            <a href="/login" *ngIf="connected== false" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-line-profile-male"></span>Connexion</a>
+            <a (click)="logout()" *ngIf="connected== true" role="button" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-line-profile-male"></span>deconnexion</a>
           </div>
         </div>
 

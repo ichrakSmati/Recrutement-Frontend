@@ -8,14 +8,10 @@ export class AuthGuard implements CanActivate {
 
     canActivate() {
 
-      if (sessionStorage.getItem('ROLE') === 'ROLE_ADMIN' || sessionStorage.getItem('ROLE') === 'ROLE_RECRUTEUR') {
-          // this.router.navigate(['/users']);
+      if (localStorage.getItem("ROLE") === 'ROLE_ADMIN' || localStorage.getItem("ROLE")=== 'ROLE_RECRUTEUR' || localStorage.getItem("ROLE") === 'ROLE_CANDIDAT') {
         return true;
-      }else if(sessionStorage.getItem('ROLE') === 'ROLE_CANDIDAT'){
-        return true
       }else {
-        this.router.navigate(['/singin']);
-        console.log('unauthorized');
+        this.router.navigate(['/login']);
         return false;
 
       }

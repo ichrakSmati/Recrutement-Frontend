@@ -7,6 +7,8 @@ import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import {User} from "../../../models/user.model";
 import {CandidatService} from "../../../services/candidat.service";
+import {AuthService} from "../../../service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ngx-header',
@@ -40,7 +42,7 @@ private recruteurId:string;
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile', link:'pages/profil' }, { title: 'Log out' } ];
+  userMenu = [ { title: 'Profile', link:'pages/profil' }, { title: 'Log out', link: 'login' } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -48,7 +50,9 @@ private recruteurId:string;
               private userService: UserData,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
-              private candidatService: CandidatService) {
+              private candidatService: CandidatService,
+              private  authService: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -100,5 +104,10 @@ private recruteurId:string;
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  logout(){
+    this.authService.setLoggedOut();
+    this.router.navigate(['/login']);
   }
 }

@@ -12,65 +12,54 @@
   </div>
 </section>
 
-<section class="site-section">
- <div class="row">
-   <div class="col-lg-3"></div>
-   <div class="col-lg-6">
-
-    <div  class="mb-5 justify-content-center">
-      <div class="col-md-7 text-center">
-        <h2 class="section-title mb-2">Mes candidatures</h2>
-      </div>
-      <a href="/candidat">profil</a>
-
-
+<section class="site-section services-section bg-light block__62849" id="next-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4"><h2 class="section-title mb-2">Mes candidatures</h2></div>
+      <div class="col-md-4"></div>
     </div>
-
-
-
-     <div class="mb-5" *ngFor = "let demande of demandes">
-
-
-      <div class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
-        <div class="col-md-2">
-          <a href="job-single.html"><img src="assets/front-end/images/featured-listing-3.jpg" alt="Image" class="img-fluid"></a>
-
-        </div>
-        <div class="col-md-4">
-          <span class="badge badge-success px-2 py-1 mb-3">{{ demande.etat }}</span>
-          <h2><a href="job-single.html">{{ demande.offre.titre }}</a> </h2>
-          <p class="meta">Publisher: <strong>{{demande.date}}t</strong> In: <strong>Design</strong></p>
-        </div>
-        <div class="col-md-3 text-left">
-          <h3>{{demande.offre.departement}}</h3>
-          <span class="meta">{{demande.offre.type}}</span>
-        </div>
-        <div class="col-md-3 text-md-right">
-          <strong class="text-black">{{demande.offre.salaire}} DT </strong>
-          <input type="button" value="form" (click)="Entretien(demande)" />
-          <input type="button" value="workflow" (click)="Suivis(demande)" />
-
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row pagination-wrap">
-
-      <div class="col-md-6 text-center text-md-left">
-        <div class="custom-pagination ml-auto">
-          <a href="#" class="prev">Previous</a>
-          <div class="d-inline-block">
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-          </div>
-          <a href="#" class="next">Next</a>
-        </div>
+    <div class="row">
+      <div  *ngFor = "let demande of demandes" class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+        <a data-toggle="modal" [attr.data-target]="'#infoDemande'+demande.id"  class="block__16443 text-center d-block">
+          <span style="float: right" *ngIf="demande.etat== 'en cours'" class="badge badge-info px-2 py-1 mb-3">{{ demande.etat }}</span>
+          <span style="float: right" *ngIf="demande.etat== 'accepté'" class="badge badge-success px-2 py-1 mb-3">{{ demande.etat }}</span>
+          <span style="float: right" *ngIf="demande.etat== 'refusé'" class="badge badge-danger px-2 py-1 mb-3">{{ demande.etat }}</span>
+          <h4>{{demande.offre.titre}}</h4>
+          <p>{{demande.offre.description | limitTo : 200}}</p>
+          <button style="" *ngIf="demande.etat== 'choix date entretien'" class="btn btn-lg btn-primary">Date d'entretien: {{demande.dateEntretien | date: 'fullDate'}}</button>
+        </a>
       </div>
     </div>
-
-   </div>
- </div>
+  </div>
 </section>
+
+
+
+<div *ngFor="let demande of demandes" class="modal" id="infoDemande{{demande.id}}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{demande.offre.titre}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{demande.offre.description}}</p>
+        <hr/>
+        <strong>Departement :</strong>{{demande.offre.departement}}<br/>
+        <strong>Ville :</strong>{{demande.offre.ville}}<br/>
+        <strong>Salaire :</strong>{{demande.offre.salaire}}<br/>
+        <strong>Date :</strong>{{demande.offre.dateDebut | date: 'fullDate'}}<br/>
+      </div>
+      <div class="modal-footer">
+        <span style="float: right" *ngIf="demande.etat== 'en cours'" class="badge badge-info px-2 py-1 mb-3">{{ demande.etat }}</span>
+        <span style="float: right" *ngIf="demande.etat== 'accepté'" class="badge badge-success px-2 py-1 mb-3">{{ demande.etat }}</span>
+        <span style="float: right" *ngIf="demande.etat== 'refusé'" class="badge badge-danger px-2 py-1 mb-3">{{ demande.etat }}</span>
+        <button type="button" style="" *ngIf="demande.etat== 'choix date entretien'" class="btn btn-lg btn-primary">Date d'entretien: 05/08/2019</button>
+      </div>
+    </div>
+  </div>
+</div>
+

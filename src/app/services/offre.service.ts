@@ -22,6 +22,10 @@ export class OffreService {
     return this.http.get<Offre[]>(this.offreUrl, this.httpOptions);
   }
 
+  public getoffresDisponible() {
+    return this.http.get<Offre[]>(this.offreUrl+ 'disponible', this.httpOptions);
+  }
+
   public getoffre(id) {
     return this.http.get<Offre>(this.offreUrl + id, this.httpOptions);
   }

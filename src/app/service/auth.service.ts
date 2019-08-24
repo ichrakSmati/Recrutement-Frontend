@@ -11,7 +11,7 @@ const TOKEN_KEY = 'AuthToken';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,public jwtHelper: JwtHelperService) { }
 
     user: User;
     users: any;
@@ -26,6 +26,7 @@ export class AuthService {
     setLoggedOut() {
         window.sessionStorage.removeItem('loggedin');
         window.sessionStorage.setItem('loggedin', 'false');
+        localStorage.clear();
     }
 
     getLoggedin() {
@@ -36,6 +37,10 @@ export class AuthService {
         this.jwtToken = window.sessionStorage.getItem(TOKEN_KEY);
     }
 
+    public isAuthenticated(): boolean {
+      const token = window.sessionStorage.getItem('AuthToken');
+      return !this.jwtHelper.isTokenExpired(token);
+    }
 
     getCurrentUser() {
         let token = window.sessionStorage.getItem(TOKEN_KEY);
@@ -44,6 +49,7 @@ export class AuthService {
     }
 
     getUserAllData() {
+      this.setLoggedin();
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',

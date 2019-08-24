@@ -17,6 +17,7 @@ export class ListeOffreComponent implements OnInit {
 nombre: number[];
   offres: Offre[];
   items: string[] ;
+
   ngOnInit()
   {
     this.offreService.getoffres()
@@ -28,9 +29,21 @@ nombre: number[];
         this.nombre = data;
       });
   }
-  Liste(offre: Offre): void {
-  this.selectedoffre = offre;
-  this.router.navigate(['/pages/offre/'+ this.selectedoffre.id]);
 
+  Liste(offre: Offre): void {
+    this.selectedoffre = offre;
+    this.router.navigate(['/pages/offre/'+ this.selectedoffre.id]);
+  }
+
+  changerEtat(offre :Offre){
+    if (offre.etat=='disponible'){
+      offre.etat='non diponible';
+    }else{
+      offre.etat='disponible';
+    }
+    this.offreService.updateOffre(offre)
+      .subscribe(data => {
+        this.router.navigate(['/pages/listeOffre']);
+      });
   }
 }

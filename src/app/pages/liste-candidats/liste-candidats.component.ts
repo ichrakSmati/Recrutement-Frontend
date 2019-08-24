@@ -26,10 +26,8 @@ demandes: Demande[];
     });
     this.demande.getdemandesparOffre(this.offreId)
       .subscribe(data => {
-        console.log(data);
         this.demandes = data;
       });
-    console.log(this.demandes);
   }
   accepte(demande): void {
     this.selectedemande = demande;

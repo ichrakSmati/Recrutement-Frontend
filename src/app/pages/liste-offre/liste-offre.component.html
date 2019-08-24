@@ -1,36 +1,59 @@
 <section class="site-section">
   <div class="container">
-
-    <div class="row mb-5 justify-content-center">
-      <div class="col-md-7 text-center">
-        <h2 class="section-title mb-2">Ma liste des offres</h2>
-      </div>
+    <div class="row">
+      <nb-card>
+        <nb-card-header>Liste des offres </nb-card-header>
+        <nb-card-body>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Titre</th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody class="table-hover">
+            <tr *ngFor = "let offre of offres">
+              <td>{{offre.titre}}</td>
+              <td>
+                {{offre.description}}<br/>
+                <strong>ville :</strong> {{offre.ville}}<br/>
+                <strong>Contrat :</strong> {{offre.type}}<br/>
+                <strong>Departement :</strong> {{offre.departement}}<br/>
+                <strong>Salaire :</strong> {{offre.salaire}}<br/>
+              </td>
+              <td>
+                <button class="btn btn-primary" type="button" (click)="Liste(offre)">Candidatures</button><hr/>
+                <button *ngIf="offre.etat== 'disponible'" data-toggle="modal" [attr.data-target]="'#changerEtat'+offre.id" class="btn btn-success" type="button">Changer etat</button>
+                <button *ngIf="offre.etat!= 'disponible'" data-toggle="modal" [attr.data-target]="'#changerEtat'+offre.id" class="btn btn-warning" type="button">Changer etat</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </nb-card-body>
+      </nb-card>
     </div>
-
-
-    <div class="mb-5" *ngFor = "let offre of offres" >
-      <div class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
-        <div class="col-md-2">
-          <h1>{{offre.type}}</h1>
-        </div>
-        <div class="col-md-4">
-          <h2><a href="job-single.html">{{offre.titre}}</a> </h2>
-          <p class="meta"><strong>description :</strong> {{ offre.description}}</p>
-        </div>
-        <div class="col-md-3 text-left">
-          <h3>{{offre.departement}}</h3>
-        </div>
-        <div class="col-md-2 text-md-right">
-
-          <div>500<strong class="text-black" class="fa fa-eye"></strong></div>
-          <div></div>
-          <input type="button" value="liste candidat" (click)="Liste(offre)" />
-
-        </div>
-
-      </div>
-    </div>
-
-
   </div>
 </section>
+<!-------------------------------------------------------------------------  Enable/disable Recruteur ------------------------------------------------------------------------------------->
+<div *ngFor="let offre of offres" class="modal" id="changerEtat{{offre.id}}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p *ngIf="offre.etat== 'disponible'">Voulez vous mettre l'etat de cet offre  <strong>Non disponible</strong></p>
+        <p *ngIf="offre.etat!= 'disponible'">Voulez vous mettre l'etat de cet offre  <strong>disponible</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" (click)="changerEtat(offre)" class="btn btn-primary">Confirmer</button>
+
+      </div>
+    </div>
+  </div>
+</div>

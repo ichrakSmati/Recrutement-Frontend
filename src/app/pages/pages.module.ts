@@ -8,25 +8,23 @@ import {
   NbListModule,
   NbMenuModule, NbPopoverModule, NbSelectModule, NbTabsetModule, NbTooltipModule,
   NbUserModule,
-  NbWindowModule
+  NbWindowModule, NbAccordionModule
 } from '@nebular/theme';
-
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
-import { DashboardModule } from './DeposerOffre/dashboard.module';
 import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import {QuizComponent} from "./quiz/quiz.component";
 import {QuizModule} from "./quiz/quiz.module";
 import {CompteModule} from "./compte/compte.module";
-import {RecruteurComponent} from "./compte/recruteur/recruteur.component";
 import { ListeOffreComponent } from './liste-offre/liste-offre.component';
 import { ListeCandidatsComponent } from './liste-candidats/liste-candidats.component';
-
 import {FormsModule} from "@angular/forms";
 import { ChoixentretienComponent } from './choixentretien/choixentretien.component';
 import {EntretienService} from "../services/entretien.service";
+import {DeposerOffreModule} from "./DeposerOffre/deposerOffre.module";
+import {DeposerOffreComponent} from "./DeposerOffre/deposerOffre.component";
 
 
 
@@ -39,7 +37,6 @@ import {EntretienService} from "../services/entretien.service";
     PagesRoutingModule,
     ThemeModule,
     NbMenuModule,
-    DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
     QuizModule,
@@ -55,6 +52,8 @@ import {EntretienService} from "../services/entretien.service";
     NbInputModule,
     NbSelectModule,
     NbTooltipModule,
+    NbAccordionModule,
+    DeposerOffreModule,
   ],
   declarations: [
     QuizComponent,
@@ -62,7 +61,7 @@ import {EntretienService} from "../services/entretien.service";
     ListeOffreComponent,
     ListeCandidatsComponent,
     ChoixentretienComponent,
-
+    DeposerOffreComponent,
   ],
   providers:[
     EntretienService,

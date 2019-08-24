@@ -24,16 +24,12 @@ export class EntretienService {
   private demandeUrl = 'http://localhost:8088/demande/';
 
   public choixoffre(choixdateEntretien) {
-
-    console.log(choixdateEntretien);
-
     return this.http.post<Choixdate>(this.entretienUrl + 'choixdate', choixdateEntretien, this.httpOptions);
   }
   public getdemande(id) {
     return this.http.get<Demande>(this.demandeUrl + 'entretien/' + id, this.httpOptions);
   }
   public getChoix(demandeid) {
-    console.log('test');
     return this.http.get<Choixdate>(this.entretienUrl + demandeid, this.httpOptions);
   }
 

@@ -14,4 +14,5 @@ export class Offre {
   dateDebut: Date;
   dateAjout: Date;
   days: number;
+  salaire: number;
 }

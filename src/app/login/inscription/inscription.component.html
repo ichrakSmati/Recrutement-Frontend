@@ -1,35 +1,89 @@
-  <form (ngSubmit)="login()"  [hidden]="loggedIn" class="form clearfix">
+<html lang="en">
+<head>
+  <title>Login V15</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="../../../assets/login/images/icons/favicon.ico"/>
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../../assets/login/vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../../assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../../assets/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../../assets/login/vendor/animate/animate.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../../assets/login/vendor/css-hamburgers/hamburgers.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../../assets/login/vendor/animsition/css/animsition.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../../assets/login/vendor/select2/select2.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../../assets/login/vendor/daterangepicker/daterangepicker.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../../assets/login/css/util.css">
+  <link rel="stylesheet" type="text/css" href="../../../assets/login/css/main.css">
+  <!--===============================================================================================-->
+</head>
+<body>
 
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-form-title" style="background-image: url(../../assets/login/images/bg-01.jpg);">
+					<span class="login100-form-title-1">
+						Inscription
+					</span>
+      </div>
 
-    <div class="form-group">
-      <label >Nom</label>
-      <input type="text" [(ngModel)]="candidatToAdd.nom" name="nom" class="form-control"  placeholder="nom">
-    </div>
-    <div class="form-group">
-      <label >Prnom</label>
-      <input type="text"  [(ngModel)]="candidatToAdd.prenom" name="prenom" class="form-control"  placeholder="prenom">
-    </div>
-    <div class="form-group">
-      <label >Email</label>
-      <input type="text" [(ngModel)]="candidatToAdd.email" name="email" class="form-control"  placeholder="email">
-    </div>
-    <div class="form-group">
-      <label for="password" class="col-form-label required">Mot de passe</label>
-      <input name="password" [(ngModel)]="candidatToAdd.pass" type="password" class="form-control" id="password" placeholder="Password" required>
-    </div>
-     <div class="form-group">
-      <label for="cv" class="col-form-label required">CV</label>
-      <input name="cv" [(ngModel)]="candidatToAdd.cv" type="text" class="form-control" id="cv" placeholder="Password" required>
-    </div>
-    <div class="form-group">
-      <label>Photo</label>
-      <input type="file"  name="photo" class="form-control"  placeholder="titre">
-    </div>
-    <div class="form-group">
-      <label >Date de naissance</label>
+      <form (ngSubmit)="login()"  [hidden]="loggedIn" class="login100-form validate-form">
 
-    </div>
+        <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+          <span class="label-input100">Nom</span>
+          <input  [(ngModel)]="candidatToAdd.nom" class="input100" type="text" name="nom"  placeholder="Enter nom">
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+          <span class="label-input100">Prenom</span>
+          <input  [(ngModel)]="candidatToAdd.prenom" class="input100" type="text" name="prenom"  placeholder="Enter prenom">
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+          <span class="label-input100">Email</span>
+          <input  [(ngModel)]="candidatToAdd.email" class="input100" type="email" name="email"  placeholder="Enter votre email">
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+          <span class="label-input100">Mot de passe</span>
+          <input  [(ngModel)]="candidatToAdd.pass" class="input100" type="password" name="password" placeholder="Enter password">
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+          <span class="label-input100">Cv</span>
+          <input  (change)="selectCv($event)" [(ngModel)]="candidatToAdd.cv" class="input100" type="file" name="cv" placeholder="Enter password">
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+          <span class="label-input100">Photo</span>
+          <input (change)="selectPhoto($event)" [(ngModel)]="candidatToAdd.photo" class="input100" type="file"  name="photo"  placeholder="Enter password">
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="form-group">
+          <label >Date de naissance</label>
+
+        </div>
     <div class="d-flex justify-content-between align-items-baseline">
-      <button type="submit" class="btn btn-primary">Sign In</button>
+      <button type="submit" class="btn btn-primary">Inscription</button>
     </div>
   </form>
+
+    </div>
+  </div>
+</div>

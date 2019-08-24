@@ -12,6 +12,7 @@ import {ActivatedRoute, Params} from '@angular/router';
   styleUrls: ['./choixentretien.component.scss'],
 })
 export class ChoixentretienComponent implements OnInit {
+
   min: Date;
   max: Date;
   result = '';
@@ -20,36 +21,30 @@ export class ChoixentretienComponent implements OnInit {
   choixdateEntretien: Choixdate = new Choixdate();
   demandeId: number;
   demandeEntretien:Demande;
-  constructor(protected dateService: NbDateService<Date>, private entretienService: EntretienService, private route: ActivatedRoute) {
 
+  constructor(protected dateService: NbDateService<Date>, private entretienService: EntretienService, private route: ActivatedRoute) {
     this.min = this.dateService.addDay(this.dateService.today(), -5);
     this.max = this.dateService.addDay(this.dateService.today(), 5);
-    console.log(this.min);
   }
 
   send(dateChoix: string) {
     this.result = dateChoix;
-    console.log(this.result);
     this.partage();
-    console.log(this.demandeId);
     this.choixdateEntretien.date1 = this.datemin;
     this.choixdateEntretien.date2 = this.datemax;
     this.entretienService.getdemande(this.demandeId)
       .subscribe(data => {
-        console.log(data);
         this.demandeEntretien = data;
+        this.choixdateEntretien.demande=this.demandeEntretien;
+        this.entretienService.choixoffre(this.choixdateEntretien)
+          .subscribe(data => {
+            alert('Date disponibilté envoyé avec succés.');
+          });
       });
-    this.choixdateEntretien.demande=this.demandeEntretien;
-    this.entretienService.choixoffre(this.choixdateEntretien)
-      .subscribe(data => {
-        alert('Date disponibilté envoyé avec succés.');
-      });
-
   }
 
   partage(): void {
     let mor = this.result.toString().split('-');
-    console.log(mor);
     this.datemin = mor[0];
     this.datemax = mor[1];
   }
@@ -59,6 +54,5 @@ export class ChoixentretienComponent implements OnInit {
       this.demandeId = +params['id'];
     });
   }
-
 
 }

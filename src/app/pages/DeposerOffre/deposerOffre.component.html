@@ -1,0 +1,81 @@
+
+   <div>
+     <div class="col-lg-9">
+       <nb-card>
+         <nb-card-header>Using the Grid</nb-card-header>
+         <nb-card-body>
+           <form>
+             <div class="form-group row">
+               <label for="titre" class="label col-sm-3 col-form-label">Titre</label>
+               <div class="col-sm-9">
+                 <input [(ngModel)]="offre.titre" placeholder="Titre de l'offre" name="titre" class="form-control" id="titre">
+               </div>
+             </div>
+
+             <div class="form-group row">
+               <label for="salaire" class="label col-sm-3 col-form-label">Salaire</label>
+               <div class="col-sm-9">
+                 <input type="number" [(ngModel)]="offre.salaire" placeholder="Salaire de l'offre" name="salaire" class="form-control" id="salaire">
+               </div>
+             </div>
+             <div class="form-group row">
+               <label for="ville" class="label col-sm-3 col-form-label">Ville</label>
+               <div class="col-sm-9">
+                 <input type="text" [(ngModel)]="offre.ville" placeholder="Salaire de l'offre" name="salaire" class="form-control" id="ville">
+               </div>
+             </div>
+             <div class="form-group row">
+               <label class="label col-sm-3 col-form-label">Description</label>
+               <div class="col-sm-9">
+                 <textarea [(ngModel)]="offre.description" name="description" rows="10" nbInput fullWidth shape="round"  placeholder="Description de l'offre"></textarea>
+               </div>
+             </div>
+             <div class="form-group row">
+               <label class="label col-sm-3 col-form-label" for="inputState">Department</label>
+               <div class="col-sm-9">
+                 <select [(ngModel)]="offre.departement" name="type" id="inputState" class="form-control">
+                   <option selected>Web</option>
+                   <option>Desktop</option>
+                   <option>Mobile</option>
+                   <option>Finance</option>
+                 </select>
+               </div>
+             </div>
+             <div class="form-group row">
+               <label class="label col-sm-3 col-form-label"for="inputState2">Contrat</label>
+               <div class="col-sm-9">
+                 <select [(ngModel)]="offre.type" name="type" id="inputState2" class="form-control">
+                   <option selected>CDI</option>
+                   <option>Freelance</option>
+                   <option>Stagiare</option>
+                 </select>
+               </div>
+             </div>
+             <div class="form-group row">
+               <label class="label col-sm-3 col-form-label"for="inputState2">Quiz</label>
+               <div class="col-sm-9">
+                 <select [(ngModel)]="offre.quiz.id" name="type" id="inputState2" class="form-control">
+                   <option value="{{quiz.id}}" *ngFor="let quiz of quizs">{{quiz.titre}}</option>
+
+                 </select>
+               </div>
+             </div>
+             <div class="form-group row">
+               <label >A partir de</label>
+               <div  class="calendars">
+                 <!--<div class="calendar-container">
+                   <input class="form-control" value="{{ date | date }}">
+                   <nb-calendar [(date)]="date" [boundingMonth]="true" [showHeader]="false"></nb-calendar>
+                 </div>-->
+               </div>
+             </div>
+             <div class="form-group row">
+               <div class="offset-sm-3 col-sm-9">
+                 <button type="submit" nbButton status="primary" (click)="createOffre()" >Sign in</button>
+               </div>
+             </div>
+           </form>
+         </nb-card-body>
+       </nb-card>
+     </div>
+   </div>

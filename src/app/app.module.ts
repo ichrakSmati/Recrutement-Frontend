@@ -12,6 +12,8 @@ import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule,MatNativeDateModule, MatFormFieldModule, MatDatepickerModule} from '@angular/material';
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import {
   NbCalendarModule,
@@ -64,6 +66,12 @@ const JWT_Module_Options: JwtModuleOptions = {
     ChangePwdComponent,
   ],
   imports: [
+    DatepickerModule,
+    BsDatepickerModule.forRoot(),
+    MatInputModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
     NbCalendarModule,
     FormsModule,
     BrowserModule,

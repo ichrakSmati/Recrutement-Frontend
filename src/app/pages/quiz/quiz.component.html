@@ -17,7 +17,8 @@
         <nb-list>
           <nb-list-item (click)="readQuiz(quiz)" *ngFor="let quiz of quizs">
             {{ quiz.titre}}
-            <button style="float: right;" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#modal'+quiz.id">modifier</button>
+            <nb-icon style="float: right;" (click)="deactivate(quiz)" *ngIf="quiz.active== true" icon="eye" pack="fa"></nb-icon>
+            <nb-icon style="float: right;" (click)="activateQuiz(quiz)" *ngIf="quiz.active== false" icon="eye-slash" pack="fa"></nb-icon>
           </nb-list-item>
         </nb-list>
       </nb-card-body>
@@ -26,6 +27,7 @@
 
 </div>
 
+<!------------------------------------------------------------Add Quiz----------------------------------------------------------------------->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -37,12 +39,10 @@
           </div>
           <form action="" method="post">
             <div class="modal-body">
-
               <div class="form-group">
                 <label >Titre</label>
                 <input type="text" [(ngModel)]="quizToAdd.titre" name="titre" class="form-control"  placeholder="titre">
               </div>
-
               <div class="form-group">
                 <label for="inputState">Type</label>
                 <select [(ngModel)]="quizToAdd.type" name="type" id="inputState" class="form-control">
@@ -50,7 +50,6 @@
                   <option>jeaa</option>
                 </select>
               </div>
-
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="on">
                 <label class="form-check-label" for="inlineRadio1">on</label>
@@ -59,20 +58,15 @@
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="off">
                 <label class="form-check-label" for="inlineRadio2">of</label>
               </div>
-
               <div class="was-validated custom-control custom-checkbox mb-3">
                 <input type="checkbox" class="custom-control-input" id="customControlValidation1" required>
                 <label class="custom-control-label" for="customControlValidation1">Activer ce quiz</label>
               </div>
-
             </div>
-
-
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" (click)="createQuiz()" class="btn btn-primary">Save changes</button>
             </div>
-
           </form>
         </div>
       </div>

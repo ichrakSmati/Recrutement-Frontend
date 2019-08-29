@@ -53,8 +53,9 @@
 
         <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
           <span class="label-input100">Email</span>
-          <input  [(ngModel)]="candidatToAdd.email" class="input100" type="email" name="email"  placeholder="Enter votre email">
+          <input (change)="mailUnique(candidatToAdd.email)"  [(ngModel)]="candidatToAdd.email" class="input100" type="email" name="email"  placeholder="Enter votre email">
           <span class="focus-input100"></span>
+          <h5 *ngIf="message== true">mail exist deja</h5>
         </div>
 
         <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
@@ -77,10 +78,17 @@
 
         <div class="form-group">
           <label >Date de naissance</label>
-
+          <input type="text"
+                 class="form-control"
+                 [minDate]="minDate"
+                 [maxDate]="maxDate"
+                 #dp="bsDatepicker"
+                 bsDatepicker [(bsValue)]="myDateValue">
         </div>
+        <br/>
     <div class="d-flex justify-content-between align-items-baseline">
-      <button type="submit" class="btn btn-primary">Inscription</button>
+      <button *ngIf="message== true" disabled="disabled" type="submit" class="btn btn-primary">Inscription</button>
+      <button *ngIf="message!= true" type="submit" class="btn btn-primary">Inscription</button>
     </div>
   </form>
 

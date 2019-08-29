@@ -14,7 +14,6 @@ export class RoleGuardService implements CanActivate {
     const expectedRole = route.data.expectedRole;
     const token =window.sessionStorage.getItem('AuthToken');
     this.tokenPayload = JWT(token);
-    console.log("role gard expected " + expectedRole + " / user role : "+this.tokenPayload.scopes[0].authority);
     if (!this.auth.isAuthenticated() || !expectedRole.includes(this.tokenPayload.scopes[0].authority)  ) {
       this.router.navigate(['login']);
       return false;

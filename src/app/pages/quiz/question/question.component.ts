@@ -6,6 +6,7 @@ import * as $ from "jquery";
 import {Reponse} from "../../../models/reponse.model";
 import {Quiz} from "../../../models/quiz.model";
 import {QuizService} from "../../../service/quiz.service";
+import {NbIconLibraries} from "@nebular/theme";
 
 
 interface TreeNode<T> {
@@ -30,14 +31,14 @@ export class QuestionComponent implements  OnInit {
 
   type: string[] = ["aa", "bb", "cc"];
   questions: Question[];
-  selectedQuestion: any;
   questionToAdd: Question = new Question();
   private quizId: number;
   radioGroupValue = 'This is value 2';
   private responsDdiv: string;
   count : number;
   reponses: Reponse[] = new Array();
-  constructor(private router: Router,private quizService: QuizService,private questionService: QuestionService, private route: ActivatedRoute) {
+  constructor(iconsLibrary: NbIconLibraries, private router: Router,private quizService: QuizService,private questionService: QuestionService, private route: ActivatedRoute) {
+    iconsLibrary.registerFontPack('fa', { packClass: 'fa', iconClassPrefix: 'fa' });
   }
 
   ngOnInit(): void {
@@ -47,7 +48,6 @@ export class QuestionComponent implements  OnInit {
 
     this.questionService.getAllQuestionByQuizId(this.quizId).subscribe(data => {
       this.questions = data;
-      console.log(this.questions);
     });
     this.count=0;
     this.questionToAdd.quiz= new Quiz();
@@ -71,7 +71,6 @@ export class QuestionComponent implements  OnInit {
     console.log(question);
     let i: number = 0;
     while (i < this.count) {
-      console.log( "Block statement execution no." + i );
       let reponse: Reponse= new Reponse();
       reponse.reponse= $('#res'+i).val();
       reponse.validate= $('#cheked'+i).is(":checked");
@@ -79,9 +78,8 @@ export class QuestionComponent implements  OnInit {
       question.reponses.push(reponse);
       i++;
     }
-    console.log(this.questionToAdd);
-    console.log("edit question");
-    console.log(question);
+    question.quiz= new Quiz();
+    question.quiz.id=this.quizId;
     this.questionService.creatQuestion(question).subscribe(data => {
       this.router.navigate(['/pages/quiz/'+ this.quizId+'/question']);
     });

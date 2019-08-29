@@ -8,28 +8,29 @@
     </nb-card>
   </div>
 </div>
-<div *ngFor="let question of questions">
-<nb-card >
-  <nb-card-header>
-    {{question.question}}
-    <button style="float: right;" class="btn btn-warning" data-toggle="modal" [attr.data-target]="'#deleteQuestion'+question.id">Supprimer</button>
-    <button style="float: right;" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#modal'+question.id">modifier</button>
-  </nb-card-header>
-  <nb-card-body class="checkbox-radio">
-    <div class="demo-items">
-      <nb-radio-group [(value)]="radioGroupValue">
-        <nb-radio *ngFor="let reponse of question.reponses"
-          [value]="'This is value 1'">
-          {{reponse.reponse}}
-        </nb-radio>
-      </nb-radio-group>
-    </div>
-  </nb-card-body>
-</nb-card>
-
+<div class="row">
+<div class="col-lg-6" *ngFor="let question of questions">
+  <nb-card >
+    <nb-card-header>
+      {{question.question}}
+      <nb-icon style="float: right;" data-toggle="modal" [attr.data-target]="'#deleteQuestion'+question.id" icon="trash-alt" pack="fa"></nb-icon>
+      <nb-icon style="float: right;" data-toggle="modal" [attr.data-target]="'#modal'+question.id" icon="pen" pack="fa"></nb-icon>
+    </nb-card-header>
+    <nb-card-body class="checkbox-radio">
+      <div class="demo-items">
+        <nb-radio-group [(value)]="radioGroupValue">
+          <nb-radio *ngFor="let reponse of question.reponses"
+            [value]="'This is value 1'">
+            {{reponse.reponse}}
+          </nb-radio>
+        </nb-radio-group>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>
 <!-------------------------------------------------------------------------- edit question ------------------------------------------------------------------------------------------->
-  <div class="modal fade" id="modal{{question.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div *ngFor="let question of questions" class="modal fade" id="modal{{question.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -70,11 +71,10 @@
     </div>
   </div>
 </div>
-</div>
 
 <!-------------------------------------------------------------------------- add question ------------------------------------------------------------------------------------------->
 <div class="modal fade" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -107,11 +107,12 @@
       </form>
     </div>
   </div>
+
 </div>
 
 <!-------------------------------------------------------------------------- delete question ------------------------------------------------------------------------------------------->
 <div *ngFor="let question of questions" class="modal" id="deleteQuestion{{question.id}}" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Modal title</h5>

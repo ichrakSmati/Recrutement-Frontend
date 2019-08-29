@@ -19,10 +19,10 @@ export class DemandeService {
       'Content-Type':  'application/json',
       'Authorization': 'Bearer ' + window.sessionStorage.getItem('AuthToken'),
     })};
-  constructor(private http: HttpClient) {}
-  private demandeUrl = 'http://localhost:8088/demande/';
 
-  // private poleUrl = '/api';
+  constructor(private http: HttpClient) {}
+
+  private demandeUrl = 'http://localhost:8088/demande/';
 
   public getdemandes() {
     return this.http.get<Demande[]>(this.demandeUrl, this.httpOptions);
@@ -30,36 +30,37 @@ export class DemandeService {
   public getoffre(id) {
     return this.http.get<Demande>(this.demandeUrl + id, this.httpOptions);
   }
-  public createDemande(id, demande: Demande) {
 
-  this.offre.id = id;
-  this.user.id= localStorage.getItem("Id");
-  demande.etat= 'en cours';
+  public createDemande(id, demande: Demande) {
+    this.offre.id = id;
+    this.user.id= localStorage.getItem("Id");
+    demande.etat= 'en cours';
     demande.candidat=this.user;
     demande.offre= this.offre;
     demande.date = this.dateNow.toISOString();
     //demande.date = this.today.getFullYear()+'-'+(this.today.getMonth()+1)+'-'+this.today.getDate();
     return this.http.post<Demande>(this.demandeUrl, demande, this.httpOptions);
   }
+
   public getdemandesparOffre(id) {
     return this.http.get<Demande[]>(this.demandeUrl + id , this.httpOptions);
   }
+
   public accepte(demande) {
-    console.log(demande);
     return this.http.put<Demande>(this.demandeUrl + 'accepte' ,  demande, this.httpOptions );
   }
+
   public refuser(demande) {
-    console.log(demande);
     return this.http.put<Demande>(this.demandeUrl + 'refuser' ,  demande, this.httpOptions );
   }
+
   public getdemandesparCandidat(id) {
     return this.http.get<Demande[]>(this.demandeUrl + 'candidat/' + id , this.httpOptions);
   }
-public getdemandesparCandidatparoffre(candidatId,offreId) {
-    console.log(candidatId);
-    console.log(offreId);
-  return this.http.get<Demande>(this.demandeUrl + 'demande/' + candidatId+'/'+offreId , this.httpOptions);
-}
+
+  public getdemandesparCandidatparoffre(candidatId,offreId) {
+     return this.http.get<Demande>(this.demandeUrl + 'demande/' + candidatId+'/'+offreId , this.httpOptions);
+  }
 
   public changeEtatDemande(demande) {
     demande.etat="date de l'entretien choisi";

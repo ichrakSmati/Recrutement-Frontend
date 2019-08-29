@@ -1,85 +1,97 @@
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-<hr>
-<div class="container bootstrap snippet">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="main-box no-header clearfix">
-        <div class="main-box-body clearfix">
-          <div class="table-responsive">
-            <table class="table user-list">
-              <thead>
-              <tr>
-                <th><span>Candidat</span></th>
-                <th><span>Email</span></th>
-                <th ><span>CV</span></th>
-                <th><span>Lettre de motivation</span></th>
-                <th>&nbsp;</th>
-              </tr>
-              </thead>
-              <tbody *ngFor = "let demande of demandes">
-              <tr>
-                <td>
-                  <img src="\assets\Uploads\{{demande.candidat.photo}}" alt="">
-                  <a href="#" class="user-link">{{demande.candidat.nom}}  {{demande.candidat.prenom}}</a>
-                  <span class="user-subhead">{{demande.date}}</span>
-                </td>
-                <td>
-                  <a href="#">{{demande.candidat.email}}</a>
-                </td>
-                <td>
-                  <span class="label label-default">cv</span>
-                </td>
-                <td style="width: 20%;" data-toggle="modal" [attr.data-target]="'#m'+demande.id"  nbButton class="center">
-                   <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-envelope-open fa-stack-1x fa-inverse"></i>
-                                            </span>
-                  <div [innerHTML]="lettreMotivation"></div>
-                </td>
-                <td style="width: 20%;">
-                  <a type="button" (click)="accepte(demande)" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-                                            </span>
-                  </a>
-                  <a type="button" (click)="refuser(demande)" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-times fa-stack-1x fa-inverse"></i>
-                                            </span>
-                  </a>
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-body>
+        <table class="table">
+          <thead>
+          <tr>
+            <th><span>Candidat</span></th>
+            <th><span>Email</span></th>
+            <th><span>Resultat quiz</span></th>
+            <th ><span>CV</span></th>
+            <th><span>Lettre de motivation</span></th>
+            <th>&nbsp;</th>
+          </tr>
+          </thead>
+          <tbody *ngFor = "let demande of demandes">
+            <tr>
+              <td>
+                <img style="height: 100px; width: 100px;" src="\assets\Uploads\{{demande.candidat.photo}}" alt="">
+                <a href="#" class="user-link">{{demande.candidat.nom}}  {{demande.candidat.prenom}}</a>
+                <span class="user-subhead">{{demande.date}}</span>
+              </td>
+              <td>
+                <a href="#">{{demande.candidat.email}}</a>
+              </td>
+               <td>
+                <a href="#">{{demande.resultatQuiz.resultat}}%</a>
+              </td>
+              <td>
+                <span class="label label-default">cv</span>
+              </td>
+              <td style="width: 20%;" data-toggle="modal" [attr.data-target]="'#m'+demande.id"  nbButton class="center">
+                <nb-icon  data-toggle="modal" [attr.data-target]="'#m'+demande.id" icon="book-open" pack="fa"></nb-icon>
+
+                <div [innerHTML]="lettreMotivation"></div>
+              </td>
+
+              <td style="width: 20%;">
+                <nb-icon (click)="pickDateEtat()" *ngIf="etat== false" icon="check-circle" pack="fa"></nb-icon>
+                <input *ngIf="etat== true" nbInput #dateChoix name="dateChoix" placeholder="Range Picker" [nbDatepicker]="rangepicker">
+                <nb-rangepicker #rangepicker></nb-rangepicker>
+                <nb-icon (click)="accepte(demande)" *ngIf="etat== true" icon="check-circle" style="color:green" pack="fa"></nb-icon>
+                <nb-icon (click)="pickDateEtat()" *ngIf="etat== true" icon="times-circle" style="color:red" pack="fa"></nb-icon>
+                <nb-icon (click)="refuser(demande)" *ngIf="etat== false" icon="times-circle" pack="fa"></nb-icon>
                 </td>
               </tr>
-
-
-
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+            </tbody>
+          </table>
+        </nb-card-body>
+      </nb-card>
   </div>
 </div>
 
-<!-- Modal -->
-<div  *ngFor = "let demande of demandes">
-<div class="modal fade" [id]="'m'+demande.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<!---------------------------------------------------------------------------Choix date Modal----------------------------------------------------->
+<div *ngFor="let demande of demandes"  class="modal fade" id="choixDate{{demande.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Lettre de motivation</h5>
+        <h5 class="modal-title" id="exampleeditModalLabel">Accepté Demande de candidatureChoisir un intervale de temps</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" [innerHTML]="demande .lettreMotivation">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+      <form action="" method="post">
+        <div class="modal-body">
+          <h5>Choisir un intervale de temps</h5><br/>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit"  (click)="accepte(demande, dateChoix.value)" class="btn btn-primary">Comfirmer</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
+
+<!---------------------------------------------------------Lettre Motivation Modal----------------------------------------------------------->
+<div  *ngFor = "let demande of demandes">
+  <div class="modal fade" [id]="'m'+demande.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Lettre de motivation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" [innerHTML]="demande .lettreMotivation">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

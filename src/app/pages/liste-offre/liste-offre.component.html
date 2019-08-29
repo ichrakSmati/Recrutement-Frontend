@@ -1,5 +1,3 @@
-<section class="site-section">
-  <div class="container">
     <div class="row">
       <nb-card>
         <nb-card-header>Liste des offres </nb-card-header>
@@ -23,9 +21,30 @@
                 <strong>Salaire :</strong> {{offre.salaire}}<br/>
               </td>
               <td>
-                <button class="btn btn-primary" type="button" (click)="Liste(offre)">Candidatures</button><hr/>
-                <button *ngIf="offre.etat== 'disponible'" data-toggle="modal" [attr.data-target]="'#changerEtat'+offre.id" class="btn btn-success" type="button">Changer etat</button>
-                <button *ngIf="offre.etat!= 'disponible'" data-toggle="modal" [attr.data-target]="'#changerEtat'+offre.id" class="btn btn-warning" type="button">Changer etat</button>
+
+                <div class="dropdown">
+                  <nb-icon class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" icon="cogs" pack="fa"></nb-icon>
+                  <div style="text-align: right" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a (click)="Liste(offre)" class="dropdown-item">
+                      Candidatures
+                      <nb-icon icon="users" pack="fa"></nb-icon>
+                    </a>
+                    <a *ngIf="offre.etat== 'disponible'" data-toggle="modal" [attr.data-target]="'#changerEtat'+offre.id" class="dropdown-item" href="#">
+                      mettre indisponible
+                      <nb-icon  icon="eye" pack="fa"></nb-icon>
+                    </a>
+                    <a *ngIf="offre.etat!= 'disponible'" data-toggle="modal" [attr.data-target]="'#changerEtat'+offre.id" class="dropdown-item" href="#">
+                      mettre disponible
+                      <nb-icon  icon="eye-slash" pack="fa"></nb-icon>
+                    </a>
+                    <a (click)="update(offre)" class="dropdown-item">
+                      Modifier
+                      <nb-icon  icon="pen" pack="fa"></nb-icon>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a (click)="delete(offre)" class="dropdown-item">Supprimer <nb-icon icon="trash" pack="fa"></nb-icon></a>
+                  </div>
+                </div>
               </td>
             </tr>
             </tbody>
@@ -33,8 +52,7 @@
         </nb-card-body>
       </nb-card>
     </div>
-  </div>
-</section>
+
 <!-------------------------------------------------------------------------  Enable/disable Recruteur ------------------------------------------------------------------------------------->
 <div *ngFor="let offre of offres" class="modal" id="changerEtat{{offre.id}}" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

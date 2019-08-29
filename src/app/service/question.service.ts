@@ -21,13 +21,7 @@ export class QuestionService {
   }
 
   public creatQuestion(question) {
-  /*let responses = question.reponses;
-  question.reponses=null;
-  console.log(question);
-  for (let entry of responses) {
-    this.http.post<Reponse>(this.questionUrl +'reponse',entry, this.httpOptions);
-  }*/
-  return this.http.post<Question>(this.questionUrl +'question', question, this.httpOptions);
+    return this.http.post<Question>(this.questionUrl +'question', question, this.httpOptions);
   }
 
   deleteQuestion(question){

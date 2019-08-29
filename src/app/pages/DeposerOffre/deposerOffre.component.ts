@@ -21,7 +21,7 @@ export class DeposerOffreComponent implements  OnInit  {
 
   ngOnInit(): void {
     this.offre.quiz=new Quiz();
-    this.quizService.getAllQuiz()
+    this.quizService.getAllActivatedQuiz()
       .subscribe(data => {
         this.quizs = data;
       });

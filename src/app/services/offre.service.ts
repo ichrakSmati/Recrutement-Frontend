@@ -31,10 +31,11 @@ export class OffreService {
   }
 
   public updateOffre(offre) {
-    return this.http.put<Offre>(this.offreUrl + 'update' ,  offre, this.httpOptions );
+    return this.http.put<Offre>(this.offreUrl ,  offre, this.httpOptions );
   }
+
   public deleteOffre(offre) {
-    return this.http.put<Offre>(this.offreUrl + 'disable' ,  offre, this.httpOptions );
+    return this.http.delete(this.offreUrl+offre.id , this.httpOptions );
   }
 
   public createOffre(offre) {

@@ -8,7 +8,7 @@ import {
   NbListModule,
   NbMenuModule, NbPopoverModule, NbSelectModule, NbTabsetModule, NbTooltipModule,
   NbUserModule,
-  NbWindowModule, NbAccordionModule
+  NbWindowModule, NbAccordionModule, NbIconModule
 } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -25,11 +25,13 @@ import { ChoixentretienComponent } from './choixentretien/choixentretien.compone
 import {EntretienService} from "../services/entretien.service";
 import {DeposerOffreModule} from "./DeposerOffre/deposerOffre.module";
 import {DeposerOffreComponent} from "./DeposerOffre/deposerOffre.component";
+import {ModifierOffreComponent} from "./liste-offre/modifier-offre/modifierOffre.component";
 
 
 
 @NgModule({
   imports: [
+    NbIconModule,
     NbDatepickerModule,
     NbListModule,
     NbUserModule,
@@ -56,6 +58,7 @@ import {DeposerOffreComponent} from "./DeposerOffre/deposerOffre.component";
     DeposerOffreModule,
   ],
   declarations: [
+    ModifierOffreComponent,
     QuizComponent,
     PagesComponent,
     ListeOffreComponent,

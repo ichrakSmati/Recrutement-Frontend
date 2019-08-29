@@ -28,7 +28,6 @@ export class EmploiComponent implements OnInit  {
     this.candidatId = localStorage.getItem("Id");
     this.demande.getdemandesparCandidat(this.candidatId)
       .subscribe(data => {
-        console.log(data);
         this.demandes = data;
       });
   }

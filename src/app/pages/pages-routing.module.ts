@@ -12,6 +12,7 @@ import {ChoixentretienComponent} from "./choixentretien/choixentretien.component
 import {ProfilComponent} from "./compte/profil/profil.component";
 import {RoleGuardService as RoleGuard} from "../login/role-guard.service";
 import {DeposerOffreComponent} from "./DeposerOffre/deposerOffre.component";
+import {ModifierOffreComponent} from "./liste-offre/modifier-offre/modifierOffre.component";
 
 const routes: Routes = [{
   path: '',
@@ -42,16 +43,16 @@ const routes: Routes = [{
       }
     },
     {
-      path: 'liste',
-      component: DeposerOffreComponent,
+      path: 'offre/:id',
+      component: ListeCandidatsComponent,
       canActivate: [RoleGuard],
       data: {
         expectedRole: ['ROLE_ADMIN','ROLE_RECRUTEUR'],
       }
     },
     {
-      path: 'offre/:id',
-      component: ListeCandidatsComponent,
+      path: 'offre/update/:id',
+      component: ModifierOffreComponent,
       canActivate: [RoleGuard],
       data: {
         expectedRole: ['ROLE_ADMIN','ROLE_RECRUTEUR'],

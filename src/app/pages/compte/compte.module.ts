@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbAccordionModule, NbActionsModule,
   NbButtonModule, NbCalendarModule,
-  NbCardModule, NbCheckboxModule, NbInputModule,
+  NbCardModule, NbCheckboxModule, NbDatepickerModule, NbIcon, NbIconModule, NbInputModule,
   NbListModule, NbRadioModule,
   NbRouteTabsetModule, NbSelectModule,
   NbStepperModule,
@@ -22,6 +22,8 @@ import {UploadService} from "../../service/upload.service";
 
 @NgModule({
   imports: [
+    NbDatepickerModule,
+    NbIconModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -44,6 +46,7 @@ import {UploadService} from "../../service/upload.service";
     NbCalendarModule
   ],
   exports: [
+    NbIconModule,
     FormsModule,
     NbCardModule,
     NbListModule,

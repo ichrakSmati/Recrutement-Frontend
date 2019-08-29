@@ -1,6 +1,6 @@
 import {User} from "./user.model";
 import {Offre} from "./offre.model";
-import {Resultatquiz} from "./resultatquiz.model";
+import {Resultatquiz} from "./resultatQuiz.models";
 
 export class Demande {
 

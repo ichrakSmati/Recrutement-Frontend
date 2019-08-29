@@ -4,6 +4,7 @@ import {NbAuthComponent, NbAuthModule} from './components/auth';
 import {NbPasswordAuthStrategy} from "./components/auth";
 
 import {
+  NbListModule,
   NbInputModule,
   NbActionsModule,
   NbLayoutModule,
@@ -78,7 +79,7 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
+  imports: [CommonModule, ...NB_MODULES, NbListModule],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
 })

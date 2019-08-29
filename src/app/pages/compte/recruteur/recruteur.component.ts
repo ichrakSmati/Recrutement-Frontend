@@ -5,6 +5,8 @@ import {CompteService} from "../../../service/compte.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {UploadService} from "../../../service/upload.service";
 import {Role} from "../../../models/role.model";
+import {NbIconLibraries} from "@nebular/theme";
+import {AuthService} from "../../../service/auth.service";
 
 
 
@@ -16,12 +18,16 @@ export class RecruteurComponent implements  OnInit {
 
   recruteurs: Recruteur[];
   date = new Date();
+  message: boolean = true;
   recToAdd : Recruteur = new  Recruteur();
   selectedFiles: FileList;
   currentFileUpload: File = null;
   progress: { percentage: number } = { percentage: 0 };
+  result :boolean;
+  messageMail : string;
 
-  constructor(private router: Router, private compteService: CompteService, private uploadService: UploadService ,private route: ActivatedRoute) {
+  constructor(private authService: AuthService, iconsLibrary: NbIconLibraries, private router: Router, private compteService: CompteService, private uploadService: UploadService ,private route: ActivatedRoute) {
+    iconsLibrary.registerFontPack('fa', { packClass: 'fa', iconClassPrefix: 'fa' });
     this.recToAdd.role= new Role();
     this.recToAdd.role.id="2";
     this.recToAdd.role.role="ROLE_RECRUTEUR";
@@ -43,6 +49,7 @@ export class RecruteurComponent implements  OnInit {
     console.log(this.recToAdd);
     this.compteService.creatRecruteur(this.recToAdd)
       .subscribe(data => {
+        this.requestPwd(this.recToAdd.email);
         this.router.navigate(['/pages/recruteurs']);
     });
   }
@@ -86,5 +93,25 @@ export class RecruteurComponent implements  OnInit {
       }
     });
     this.selectedFiles = undefined;
+  }
+
+  mailUnique(username){
+    this.authService.mailExist(username).subscribe(data=>{
+      this.message=data;
+    })
+  }
+
+  requestPwd(email : string): void {
+    this.authService.requestPwd(email)
+      .subscribe(data => {
+        this.result = data;
+      });
+    if (this.result==true){
+      this.messageMail="le lien de reintialisation du mot de passe a été envoyé";
+    }else{
+      this.messageMail="le mail est invalide";
+    }
+    console.log(this.result);
+
   }
 }

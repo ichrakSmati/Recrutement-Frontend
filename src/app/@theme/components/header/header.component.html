@@ -9,13 +9,27 @@
 </div>
 
 <div class="header-container">
-  <nb-actions size="small">
+  <div class="dropdown">
+      <nb-icon class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" style="float: right;" icon="bell" pack="fa"></nb-icon>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </div>
 
+  <nb-actions size="small">
     <nb-action class="control-item">
       <nb-search type="rotate-layout"></nb-search>
     </nb-action>
     <nb-action class="control-item" icon="email-outline"></nb-action>
-    <nb-action class="control-item" icon="bell-outline"></nb-action>
+    <nb-action class="control-item" icon="bell-outline">
+      <nb-list>
+        <nb-list-item>notification 1</nb-list-item>
+        <nb-list-item>notification 2</nb-list-item>
+        <nb-list-item>notification 3</nb-list-item>
+      </nb-list>
+    </nb-action>
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"

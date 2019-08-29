@@ -18,12 +18,20 @@ export class QuizService {
     return this.http.get<Quiz[]>(this.quizUrl, this.httpOptions);
   }
 
+  public getAllActivatedQuiz() {
+    return this.http.get<Quiz[]>(this.quizUrl+"/activated", this.httpOptions);
+  }
+
   public getQuiz(id) {
     return this.http.get<Quiz>(this.quizUrl + id, this.httpOptions);
   }
 
   public updateQuiz(quiz) {
-    return this.http.put<Quiz>(this.quizUrl + 'update' ,  quiz, this.httpOptions );
+    return this.http.put<Quiz>(this.quizUrl,  quiz, this.httpOptions );
+  }
+
+  public activateQuiz(quiz) {
+    return this.http.put<Quiz>(this.quizUrl + '/enable' ,  quiz, this.httpOptions );
   }
 
 

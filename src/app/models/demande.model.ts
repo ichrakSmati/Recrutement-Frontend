@@ -1,5 +1,6 @@
 import {User} from "./user.model";
 import {Offre} from "./offre.model";
+import {Resultatquiz} from "./resultatquiz.model";
 
 export class Demande {
 
@@ -10,4 +11,5 @@ export class Demande {
   candidat: User;
   offre: Offre;
   dateEntretien: Date;
+  resultatQuiz: Resultatquiz;
 }

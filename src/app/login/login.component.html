@@ -37,16 +37,16 @@
 					</span>
         </div>
 
-        <form (ngSubmit)="login()"  [hidden]="loggedIn" class="login100-form validate-form">
+        <form name="myForm" (ngSubmit)="login()"  [hidden]="loggedIn" class="login100-form validate-form">
           <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-            <span class="label-input100">Username</span>
-            <input  [(ngModel)]="username" class="input100" type="text" name="username" placeholder="Enter username">
+            <span class="label-input100">Email</span>
+            <input  [(ngModel)]="username" class="input100" type="email" name="username" placeholder="Entrer email"  >
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
             <span class="label-input100">Password</span>
-            <input  [(ngModel)]="password" class="input100" type="password" name="password" placeholder="Enter password">
+            <input  [(ngModel)]="password" class="input100" type="password" name="password" placeholder="Entrer password">
             <span class="focus-input100"></span>
           </div>
 

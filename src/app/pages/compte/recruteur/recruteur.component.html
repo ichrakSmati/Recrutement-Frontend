@@ -29,9 +29,9 @@
               <td>{{recruteur.dateRecrutement  | date: 'fullDate'}}</td>
               <td>{{recruteur.departement}}</td>
               <td>
-                <button data-toggle="modal" [attr.data-target]="'#editRecruteur'+recruteur.id" class="btn btn-primary">edit</button>
-                <button data-toggle="modal" [attr.data-target]="'#statusRecruteur'+recruteur.id" *ngIf="recruteur.etat== true" class="btn btn-danger">desactiver</button>
-                <button data-toggle="modal" [attr.data-target]="'#statusRecruteur'+recruteur.id" *ngIf="recruteur.etat!= true" class="btn btn-danger">activer</button>
+                <nb-icon style="float: right; padding-left: 30px;" data-toggle="modal" [attr.data-target]="'#editRecruteur'+recruteur.id" icon="pen" pack="fa"></nb-icon>
+                <nb-icon style="float: right;" data-toggle="modal"  [attr.data-target]="'#statusRecruteur'+recruteur.id" *ngIf="recruteur.etat== true" icon="eye" pack="fa"></nb-icon>
+                <nb-icon style="float: right;" data-toggle="modal" [attr.data-target]="'#statusRecruteur'+recruteur.id" *ngIf="recruteur.etat!= true" icon="eye-slash" pack="fa"></nb-icon>
               </td>
 
 
@@ -65,7 +65,8 @@
           </div>
           <div class="form-group">
             <label >Email</label>
-            <input type="text" [(ngModel)]="recToAdd.email" name="email" class="form-control"  placeholder="email">
+            <input type="text" (change)="mailUnique(recToAdd.email)" [(ngModel)]="recToAdd.email" name="email" class="form-control"  placeholder="email">
+            <h5 *ngIf="message== true">mail exist deja</h5>
           </div>
           <div class="form-group">
             <label>Photo</label>
@@ -94,7 +95,8 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" (click)="createRecruteur()" class="btn btn-primary">Comfirmer</button>
+          <button type="submit" *ngIf="message== true" disabled="disabled" (click)="createRecruteur()" class="btn btn-primary">Comfirmer</button>
+          <button type="submit" *ngIf="message== false"  (click)="createRecruteur()" class="btn btn-primary">Comfirmer</button>
         </div>
 
       </form>

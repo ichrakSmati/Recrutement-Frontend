@@ -1,5 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import {
+  NbIconLibraries,
+  NbMediaBreakpointsService,
+  NbMenuService,
+  NbSidebarService,
+  NbThemeService
+} from '@nebular/theme';
 
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
@@ -44,7 +50,8 @@ private recruteurId:string;
 
   userMenu = [ { title: 'Profile', link:'pages/profil' }, { title: 'Log out', link: 'login' } ];
 
-  constructor(private sidebarService: NbSidebarService,
+  constructor(iconsLibrary: NbIconLibraries,
+              private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
               private userService: UserData,
@@ -53,14 +60,13 @@ private recruteurId:string;
               private candidatService: CandidatService,
               private  authService: AuthService,
               private router: Router) {
+    iconsLibrary.registerFontPack('fa', { packClass: 'fa', iconClassPrefix: 'fa' });
   }
 
   ngOnInit() {
     this.recruteurId= localStorage.getItem("Id");
-    console.log("recruteur"+localStorage.getItem("Id"));
     this.candidatService.getCandidatId(this.recruteurId)
       .subscribe(data => {
-        console.log(data);
         this.recruteur = data;
       });
     this.currentTheme = this.themeService.currentTheme;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
 import {Router} from '@angular/router';
 import { TokenStorage } from '../../service/token.storage';
@@ -6,28 +6,33 @@ import {Candidat} from "../../models/candidat.models";
 import {Role} from "../../models/role.model";
 import {UploadService} from "../../service/upload.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 @Component({
   selector: '',
   templateUrl: './inscription.component.html'
 })
-export class InscriptionComponent {
+export class InscriptionComponent implements  OnInit{
 
+  myDateValue: Date;
   selectedCv: FileList;
   currentFileUploadCv: File = null;
   progressCv: { percentageCv: number } = { percentageCv: 0 }
-
   selectedPhoto: FileList;
   currentFileUploadPhoto: File = null;
   progressPhoto: { percentagePhoto: number } = { percentagePhoto: 0 };
-
+  message: boolean = true;
   title = 'inscription';
   candidatToAdd : Candidat = new Candidat();
-  date = new Date();
   private credential = {'username': '', 'password' : ''};
   username: string;
   password: string;
   user: any;
+
+  ngOnInit(): void {
+    this.myDateValue = new Date();
+  }
 
   constructor( private authService: AuthService, private router: Router, private token: TokenStorage, private uploadService: UploadService) {
     this.candidatToAdd.role= new Role();
@@ -36,30 +41,30 @@ export class InscriptionComponent {
   }
 
   login(): void {
-    this.candidatToAdd.dateNaissance=this.date;
+    this.candidatToAdd.dateNaissance=this.myDateValue;
     this.uploadFileCv();
     this.uploadFilePhoto();
-    console.log(this.candidatToAdd);
-    /*die function*/ //throw new Error("my error message");
     this.authService.inscription(this.candidatToAdd).subscribe(
       data => {
         this.token.saveToken(data.token);
-        console.log(this.token.getToken());
-        console.log("send credential operation");
       },
       error => {
         console.log(error);
-
       },
       () => {
-        localStorage.setItem("Nom", this.candidatToAdd.nom);
-        localStorage.setItem("Prenom", this.candidatToAdd.prenom);
-        localStorage.setItem("Email", this.candidatToAdd.email);
-        //sessionStorage.setItem("DateNaissance", this.candidatToAdd.dateNaissance);
-        localStorage.setItem("Photo", this.candidatToAdd.photo);
-        localStorage.setItem("ROLE", this.candidatToAdd.role.role)
-        this.router.navigate(['/emploi']);
-
+        this.authService.getUserAllData().subscribe(
+          data => {
+            this.user = data;
+            localStorage.setItem("ROLE", this.user.role.role);
+            localStorage.setItem("Id", this.user.id);
+            localStorage.setItem("Nom", this.user.nom);
+            localStorage.setItem("Prenom", this.user.prenom);
+            localStorage.setItem("Email", this.user.email);
+            localStorage.setItem("DateNaissance", this.user.dateNaissance);
+            localStorage.setItem("Photo", this.user.photo);
+            this.router.navigate(['/emploi']);
+          }
+        );
       }
     );
   }
@@ -102,5 +107,15 @@ export class InscriptionComponent {
 
   selectPhoto(event) {
     this.selectedPhoto = event.target.files;
+  }
+
+  onDateChange(newDate: Date) {
+    console.log(newDate);
+  }
+
+  mailUnique(username){
+    this.authService.mailExist(username).subscribe(data=>{
+      this.message=data;
+    })
   }
 }

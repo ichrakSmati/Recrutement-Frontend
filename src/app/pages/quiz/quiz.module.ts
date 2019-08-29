@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbAccordionModule, NbActionsModule,
   NbButtonModule,
-  NbCardModule, NbCheckboxModule, NbInputModule,
+  NbCardModule, NbCheckboxModule, NbIconModule, NbInputModule,
   NbListModule, NbRadioModule,
   NbRouteTabsetModule, NbSelectModule,
   NbStepperModule,
@@ -20,6 +20,7 @@ import {QuestionComponent} from "./question/question.component";
 
 @NgModule({
   imports: [
+    NbIconModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -39,6 +40,7 @@ import {QuestionComponent} from "./question/question.component";
     NbCheckboxModule,
   ],
   exports: [
+    NbIconModule,
     FormsModule,
     NbCardModule,
     NbListModule,

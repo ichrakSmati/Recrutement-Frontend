@@ -59,7 +59,6 @@ export class AuthService {
             this.loadToken();
         }
         this.users = this.getCurrentUser();
-        console.log(this.users.sub);
         return this.http.get(this.host + '/user/email/' + this.users.sub ,  httpOptions);
 
     }
@@ -71,7 +70,6 @@ export class AuthService {
     }
 
     inscription(candidat : Candidat): Observable<any> {
-        console.log('Connexion ::');
         return this.http.post<any>('http://localhost:8088/inscription', candidat);
     }
 
@@ -81,6 +79,10 @@ export class AuthService {
 
     public verifyToken(token){
       return this.http.get<User>('http://localhost:8088/pwd/verifyToken/'+token);
+    }
+
+    public mailExist(email){
+      return this.http.get<boolean>('http://localhost:8088/mailunique/'+email);
     }
 
     public resetPwd(token,pwd){

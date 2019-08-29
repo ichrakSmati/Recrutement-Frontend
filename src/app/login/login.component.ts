@@ -21,12 +21,9 @@ export class LoginComponent {
     this.authService.sendCredential(this.username, this.password).subscribe(
       data => {
         this.token.saveToken(data.token);
-        console.log(this.token.getToken());
-        console.log("send credential operation");
       },
       error => {
         console.log(error);
-
       },
       () => {
         this.authService.getUserAllData().subscribe(
@@ -39,16 +36,14 @@ export class LoginComponent {
             localStorage.setItem("Email", this.user.email);
             localStorage.setItem("DateNaissance", this.user.dateNaissance);
             localStorage.setItem("Photo", this.user.photo);
-            console.log(localStorage.getItem("ROLE"));
             if(this.user.role.role == "ROLE_ADMIN" || this.user.role.role == "ROLE_RECRUTEUR" ) {
-              this.router.navigate(['/pages/dashboard']);
+              this.router.navigate(['/pages/listeOffre']);
             }
             else if (this.user.role.role == "ROLE_CANDIDAT"){
               this.router.navigate(['/emploi']);
             }else {
-                this.router.navigate(['/signin']);
+                this.router.navigate(['/login']);
             }
-
           }
         );
       }

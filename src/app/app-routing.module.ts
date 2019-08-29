@@ -14,7 +14,6 @@ import {RechercheComponent} from "./front-page/recherche/recherche.component";
 import {CandidatComponent} from "./front-page/candidat/candidat.component";
 import {LoginComponent} from "./login/login.component";
 import {EditorComponent} from "./front-page/editor/editor.component";
-import {ReponseEntretienComponent} from "./front-page/reponse-entretien/reponse-entretien.component";
 import {SuivreComponent} from "./front-page/suivre/suivre.component";
 const routes: Routes = [
   {
@@ -32,10 +31,6 @@ const routes: Routes = [
       {
         path: 'candidat',
         component: CandidatComponent,
-      },
-      {
-        path: 'reponse/:id',
-        component: ReponseEntretienComponent,
       },
       {
         path: 'suivre/:id',

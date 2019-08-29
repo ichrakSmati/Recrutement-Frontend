@@ -60,6 +60,7 @@ export class EditorComponent implements OnInit {
     //console.log(this.candidat);
 
     this.router.navigate(['/']);
+
   }
 
   ngOnInit() {

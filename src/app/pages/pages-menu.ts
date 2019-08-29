@@ -9,12 +9,21 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'deposer offre',
-    icon: 'home-outline',
+    icon: 'edit',
     link: '/pages/liste',
   },
   {
     title: 'liste offre',
-    icon: 'home-outline',
+    icon: 'list',
     link: '/pages/listeOffre',
+  },
+  {
+    title: 'cvtheque',
+    icon: 'grid',
+    link: '/pages/cvtheque',
+  },{
+    title: 'entretien',
+    icon: 'grid',
+    link: '/pages/entretien',
   }
 ];

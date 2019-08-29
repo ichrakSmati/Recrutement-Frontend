@@ -43,6 +43,7 @@
     </div>
 
 
+
     <div class="mb-5" *ngFor = "let offre of (offres| filter:dep:term:titre)" >
       <div class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
         <div class="col-md-2">
@@ -59,7 +60,7 @@
           <div><strong class="text-black">{{offre.salaire}} DT </strong></div>
           <div></div>
           <span class="badge badge-primary px-2 py-1 mb-3" ><a href="/editor">Postuler</a></span>
-         <button [routerLink]="['/editor', offre.id]" type="button" >Postule</button>
+         <button [routerLink]="['/editor',offre.id]" type="button" >Postule</button>
         </div>
 
       </div>

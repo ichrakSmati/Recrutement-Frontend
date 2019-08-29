@@ -40,7 +40,6 @@ export class DemandeService {
   demande.etat= 'en cours';
     demande.candidat=this.user;
     demande.offre= this.offre;
-    demande.date = this.dateNow.toISOString();
     return this.http.post<Demande>(this.demandeUrl, demande, this.httpOptions);
   }
   public getdemandesparOffre(id) {
@@ -64,7 +63,7 @@ public getdemandesparCandidatparoffre(candidatId,offreId) {
 }
 
   public changeEtatDemande(demande) {
-    console.log(demande);
+    console.log(demande.datepostulation);
    // demande.etat="date de l'entretien choisi";
     return this.http.put<Demande>(this.demandeUrl + 'changeEtat' ,  demande, this.httpOptions );
   }

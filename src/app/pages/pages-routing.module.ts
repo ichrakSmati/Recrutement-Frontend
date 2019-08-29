@@ -8,6 +8,9 @@ import { NotFoundComponent } from './miscellaneous/not-found/not-found.component
 import {ListeOffreComponent} from "./liste-offre/liste-offre.component";
 import {ListeCandidatsComponent} from "./liste-candidats/liste-candidats.component";
 import {ChoixentretienComponent} from "./choixentretien/choixentretien.component";
+import {CvthequeComponent} from "./cvtheque/cvtheque.component";
+import {ChoixdateComponent} from "./choixdate/choixdate.component";
+import {ListEntretienComponent} from "./list-entretien/list-entretien.component";
 
 const routes: Routes = [{
   path: '',
@@ -24,10 +27,21 @@ const routes: Routes = [{
     {
       path: 'choixentretien/:id',
       component: ChoixentretienComponent,
+    },{
+      path: 'choix/:id',
+      component: ChoixdateComponent,
     },
     {
       path: 'liste',
       component: DashboardComponent,
+    },
+    {
+      path: 'cvtheque',
+      component: CvthequeComponent,
+    },
+    {
+      path: 'entretien',
+      component: ListEntretienComponent,
     },
     {
       path: 'offre/:id',

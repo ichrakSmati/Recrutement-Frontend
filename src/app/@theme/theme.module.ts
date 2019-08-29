@@ -7,6 +7,7 @@ import {
   NbInputModule,
   NbActionsModule,
   NbLayoutModule,
+  NbCardModule, NbListModule,
   NbMenuModule,
   NbSearchModule,
   NbSidebarModule,
@@ -15,7 +16,7 @@ import {
   NbButtonModule,
   NbSelectModule,
   NbIconModule,
-  NbThemeModule,
+  NbThemeModule, NbTabsetModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
@@ -44,12 +45,59 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
+import {NotifierModule, NotifierOptions} from 'angular-notifier';
+
+
+const customNotifierOptions: NotifierOptions = {
+  position: {
+    horizontal: {
+      position: 'right',
+      distance: 12
+    },
+    vertical: {
+      position: 'top',
+      distance:100 ,
+      gap: 10
+    }
+  },
+  theme: 'material',
+  behaviour: {
+    autoHide: 5000,
+    onClick: 'hide',
+    onMouseover: 'pauseAutoHide',
+    showDismissButton: true,
+    stacking: 4
+  },
+  animations: {
+    enabled: true,
+    show: {
+      preset: 'slide',
+      speed: 300,
+      easing: 'ease'
+    },
+    hide: {
+      preset: 'fade',
+      speed: 300,
+      easing: 'ease',
+      offset: 50
+    },
+    shift: {
+      speed: 300,
+      easing: 'ease'
+    },
+    overlap: 150
+  }
+};
 
 const NB_MODULES = [
+  NotifierModule.withConfig(customNotifierOptions),
   NbInputModule,
   NbLayoutModule,
   NbMenuModule,
   NbUserModule,
+  NbCardModule,
+  NbListModule,
+  NbTabsetModule,
   NbActionsModule,
   NbSearchModule,
   NbSidebarModule,

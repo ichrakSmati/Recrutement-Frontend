@@ -8,7 +8,7 @@ import {
   NbListModule,
   NbMenuModule, NbPopoverModule, NbSelectModule, NbTabsetModule, NbTooltipModule,
   NbUserModule,
-  NbWindowModule
+  NbWindowModule, NbCalendarModule
 } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
@@ -23,15 +23,21 @@ import { ListeCandidatsComponent } from './liste-candidats/liste-candidats.compo
 import {FormsModule} from "@angular/forms";
 import { ChoixentretienComponent } from './choixentretien/choixentretien.component';
 import {EntretienService} from "../services/entretien.service";
+import { CvthequeComponent } from './cvtheque/cvtheque.component';
+import {PdfViewerModule} from "ng2-pdf-viewer";
+import { ChoixdateComponent } from './choixdate/choixdate.component';
+import { ListEntretienComponent } from './list-entretien/list-entretien.component';
 
 
 
 @NgModule({
   imports: [
     NbDatepickerModule,
+    NbCalendarModule,
     NbListModule,
     NbUserModule,
     NbCardModule,
+    PdfViewerModule,
     PagesRoutingModule,
     ThemeModule,
     NbMenuModule,
@@ -55,6 +61,9 @@ import {EntretienService} from "../services/entretien.service";
     ListeOffreComponent,
     ListeCandidatsComponent,
     ChoixentretienComponent,
+    CvthequeComponent,
+    ChoixdateComponent,
+    ListEntretienComponent,
 
   ],
   providers:[

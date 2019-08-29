@@ -1,15 +1,28 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CandidatService} from "../../services/candidat.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'ngx-ecommerce',
   templateUrl: './e-commerce.component.html',
 })
-export class ECommerceComponent {
-  users: { name: string, title: string }[] = [
-    { name: 'Carla Espinosa', title: 'Nurse' },
-    { name: 'Bob Kelso', title: 'Doctor of Medicine' },
-    { name: 'Janitor', title: 'Janitor' },
-    { name: 'Perry Cox', title: 'Doctor of Medicine' },
-    { name: 'Ben Sullivan', title: 'Carpenter and photographer' },
-  ];
+export class ECommerceComponent implements OnInit{
+  private users:User[];
+
+  constructor(private candidatService:CandidatService){}
+
+  private use: { name: string, title: string }[];
+
+  ngOnInit() {
+    this.candidatService.getCandidat().subscribe(data => {
+      this.users = data;
+      for (let user of this.users) {
+        this.use=[{ name: user.nom, title: user.role.role }];
+        console.log(user.nom);
+
+      }
+    });
+  }
+
+
 }

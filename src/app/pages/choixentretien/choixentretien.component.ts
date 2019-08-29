@@ -5,6 +5,8 @@ import {Choixdate} from '../../models/choixdate.model';
 import {Demande} from '../../models/demande.model';
 
 import {ActivatedRoute, Params} from '@angular/router';
+import {NotificationService} from "../../services/notification.service";
+import {NotifResponse} from "../../models/NotifResponse.model";
 
 @Component({
   selector: 'ngx-choixentretien',
@@ -20,7 +22,9 @@ export class ChoixentretienComponent implements OnInit {
   choixdateEntretien: Choixdate = new Choixdate();
   demandeId: number;
   demandeEntretien:Demande;
-  constructor(protected dateService: NbDateService<Date>, private entretienService: EntretienService, private route: ActivatedRoute) {
+  notif:NotifResponse=new NotifResponse();
+  constructor(protected dateService: NbDateService<Date>, private entretienService: EntretienService, private route: ActivatedRoute,
+              private notificationService:NotificationService) {
 
     this.min = this.dateService.addDay(this.dateService.today(), -5);
     this.max = this.dateService.addDay(this.dateService.today(), 5);
@@ -38,13 +42,13 @@ export class ChoixentretienComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.demandeEntretien = data;
-      });
     this.choixdateEntretien.demande=this.demandeEntretien;
     this.entretienService.choixoffre(this.choixdateEntretien)
       .subscribe(data => {
         alert('Date disponibilté envoyé avec succés.');
+        console.log(this.choixdateEntretien);
       });
-
+  });
   }
 
   partage(): void {

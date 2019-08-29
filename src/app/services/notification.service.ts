@@ -49,13 +49,23 @@ export class NotificationService {
       console.log(this.notif);
     return this.http.post<Notif>(this.notifUrl + 'postule', notif, this.httpOptions);
 }
-  public notifaccepte(demande, notif: NotifResponse) {
+  public notifaccepte(demande,entretien, notif: NotifResponse) {
 
     console.log(demande.offre.titre);
     console.log(demande.candidat.nom);
     notif.etat=true;
     notif.candidat=demande.candidat;
-    notif.message = ' Votre candidature à ' + demande.offre.titre+' a était accepté ';
+    notif.message = ' Votre candidature à ' + demande.offre.titre+' a était accepté !La date de votre entretien est le'+entretien.date;
+
+    console.log(this.notif);
+    return this.http.post<NotifResponse>(this.notifUrl + 'Reponse', notif, this.httpOptions);
+  }
+  public notifEntretien(entretien,candidat,notif: NotifResponse) {
+    console.log(notif);
+
+    notif.etat=true;
+    notif.candidat=candidat;
+    notif.message = 'Vous avez une demande d entretien le '+entretien.date ;
 
     console.log(this.notif);
     return this.http.post<NotifResponse>(this.notifUrl + 'Reponse', notif, this.httpOptions);
@@ -76,5 +86,8 @@ export class NotificationService {
   }
   public changeetat(notif) {
     return this.http.put<Notif>(this.notifUrl + 'changeetat' ,  notif, this.httpOptions );
+  }
+  public changeetatnotif(notif) {
+    return this.http.put<NotifResponse>(this.notifUrl + 'changeetatnotif' ,  notif, this.httpOptions );
   }
 }

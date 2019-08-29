@@ -14,17 +14,21 @@
 
 <section class="site-section">
  <div class="row">
-   <div class="col-lg-3"></div>
+   <div class="col-lg-1"></div>
+   <div class="col-lg-1">
+
+     <a href="/candidat" ><strong class="text-black fa fa-user fa-2x">Profil</strong></a>
+
+   </div>
+   <div class="col-lg-1"></div>
    <div class="col-lg-6">
 
     <div  class="mb-5 justify-content-center">
       <div class="col-md-7 text-center">
         <h2 class="section-title mb-2">Mes candidatures</h2>
       </div>
-      <a href="/candidat">profil</a>
 
 
-    </div>
 
 
 
@@ -49,6 +53,7 @@
           <strong class="text-black">{{demande.offre.salaire}} DT </strong>
           <input type="button" value="form" (click)="Entretien(demande)" />
           <input type="button" value="workflow" (click)="Suivis(demande)" />
+          <button type="button" data-toggle="modal" [attr.data-target]="demande.id" class="btn btn-danger">kk</button>
 
         </div>
       </div>
@@ -70,7 +75,41 @@
         </div>
       </div>
     </div>
-
-   </div>
- </div>
+    </div>
+   </div></div>
 </section>
+
+<div *ngFor="let demande of demandes" class="modal fade" id="{{demande.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog large" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleeditModalLabel">Ajouter recruteur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="form-row align-items-center">
+          <div class="col-auto my-1">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
+            <select name="entretien.date" [(ngModel)]="entretien.date"  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+              <option selected>Choose...</option>
+              <ng-container *ngIf="choix.demande.id== demande.id"><option *ngFor = "let choix of entretiens"  value={{choix.date1}}>{{choix.date1 | date:'yyyy/MM/dd' }}</option>
+              </ng-container>
+              <option value={{choix.date1}}>{{choix.date2| date:'yyyy/MM/dd' }}</option>
+            </select>
+          </div>
+          <div class="col-auto my-1">
+            <div class="custom-control custom-checkbox mr-sm-2">
+              <input  name="entretien.type" [(ngModel)]="entretien.type" value="entretien a distance" type="checkbox" class="custom-control-input" id="customControlAutosizing">
+              <label  class="custom-control-label" for="customControlAutosizing">entretien a distance</label>
+            </div>
+          </div>
+          <div class="col-auto my-1">
+            <button type="submit" class="btn btn-primary" (click)="createEntretienForm(demande)">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

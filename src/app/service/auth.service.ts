@@ -53,6 +53,7 @@ export class AuthService {
         }
         this.users = this.getCurrentUser();
         console.log(this.users.sub);
+
         return this.http.get(this.host + '/user/email/' + this.users.sub ,  httpOptions);
 
     }

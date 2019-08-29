@@ -1,5 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {
+  NbIconLibraries,
+  NbMediaBreakpointsService,
+  NbMenuService,
+  NbSidebarService,
+  NbThemeService
+} from '@nebular/theme';
 
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
@@ -7,7 +13,13 @@ import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import {User} from "../../../models/user.model";
 import {CandidatService} from "../../../services/candidat.service";
-
+import {NotificationService} from "../../../services/notification.service";
+import {Notif} from "../../../models/notif.model";
+import {NotifierService} from "angular-notifier";
+import * as $ from 'jquery';
+import {NotifResponse} from "../../../models/NotifResponse.model";
+import {Router} from "@angular/router";
+declare var $: $;
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -18,6 +30,9 @@ private recruteurId:string;
   recruteur:User;
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
+  private readonly notifier: NotifierService;
+private message:string;
+  notifs: Notif[];
 
   themes = [
     {
@@ -48,10 +63,33 @@ private recruteurId:string;
               private userService: UserData,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
-              private candidatService: CandidatService) {
+              private candidatService: CandidatService,
+              private notificationService : NotificationService,
+              private notifierService: NotifierService ,
+              private router:Router,
+              iconsLibrary: NbIconLibraries,) {
+    iconsLibrary.registerFontPack('fa', { packClass: 'fa', iconClassPrefix: 'fa' });
+
   }
 
   ngOnInit() {
+    this.notificationService.getNotif()
+      .subscribe(data=>{
+        this.notifs=data;
+        $('.toast').toast('show');
+
+        //  for (let notif of this.notifs) {
+        /* if(notif.etat==true){
+          console.log("bye");
+          this.notifier.show({
+            message: this.message,
+            type: 'info',
+            //id: notif.id,
+          });
+          //}
+        }*/
+      });
+
     this.recruteurId= localStorage.getItem("Id");
     console.log("recruteur"+localStorage.getItem("Id"));
     this.candidatService.getCandidatId(this.recruteurId)
@@ -96,9 +134,23 @@ private recruteurId:string;
 
     return false;
   }
+  dismiss(notif: Notif) {
+    this.notificationService.changeetat(notif).subscribe(val => {
+      this.router.navigate(['/pages/']);
 
+    });
+  }
+
+  /*public showSpecificNotification( type: string, message: string, id: string ): void {
+    this.notifier.show( {
+      id,
+      message,
+      type
+    } );
+  }*/
   navigateHome() {
     this.menuService.navigateHome();
     return false;
   }
+
 }

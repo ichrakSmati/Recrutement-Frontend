@@ -41,13 +41,25 @@ export class EntretienService {
   }
 
   public createEntretien(entretien,demande) {
-    console.log(demande.candidat.id);
+    console.log(entretien.type);
     this.dateString=entretien.date;
     let newDate = new Date(this.dateString);
     this.user.id= demande.candidat.id;
     entretien.candidat=this.user;
     entretien.date=newDate;
-    entretien.type="En attente de l'entretien";
+    entretien.etat="En attente de l'entretien";
+    return this.http.post<Entretiendate>(this.entretienUrl, entretien, this.httpOptions);
+  }
+  public createEntretienSpontane(entretien,candidat) {
+    console.log(candidat.id);
+    this.dateString=entretien.date;
+    console.log()
+    let newDate = new Date(this.dateString);
+    this.user.id= candidat.id;
+    entretien.candidat=this.user;
+    entretien.date=newDate;
+    entretien.etat="En attente de l'entretien";
+    console.log(entretien);
 
     return this.http.post<Entretiendate>(this.entretienUrl, entretien, this.httpOptions);
   }
@@ -56,4 +68,14 @@ export class EntretienService {
     console.log("test");
     return this.http.get<Choixdate[]>(this.entretienUrl , this.httpOptions);
   }
+  public getEntretienList() {
+    console.log("test");
+    return this.http.get<Entretiendate[]>(this.entretienUrl +'list', this.httpOptions);
+  }
+  public effectueEntretien(entretien){
+    return this.http.put<Entretiendate>(this.entretienUrl + 'effectue' ,  entretien, this.httpOptions );
+
+  }
+
+
 }

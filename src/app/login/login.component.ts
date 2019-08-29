@@ -32,8 +32,10 @@ export class LoginComponent {
         this.authService.getUserAllData().subscribe(
           data => {
             this.user = data;
+            console.log("user id auth service :"+this.user.id);
             //sessionStorage.setItem("ROLE", this.user.role.role);
-            sessionStorage.setItem("Id", this.user.id);
+            localStorage.setItem("Id", this.user.id);
+            console.log("login.ts " + localStorage.getItem("Id"));
             sessionStorage.setItem("Nom", this.user.nom);
             sessionStorage.setItem("Prenom", this.user.prenom);
             sessionStorage.setItem("Email", this.user.email);

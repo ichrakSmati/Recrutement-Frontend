@@ -22,19 +22,19 @@
     <div class="stepwizard-row setup-panel">
       <div class="stepwizard-step">
         <a href="#step-1" type="button" class="btn btn-primary btn-circle"  disabled="disabled">1</a>
-         <p *ngIf="demande.etat == 'en cours'">  {{demande.etat}}</p>
+         <p *ngIf="demande.etat == 'en cours'" > {{demande.etat}}</p>
       </div>
       <div class="stepwizard-step">
         <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-        <p *ngIf="demande.etat == 'accepté'">CV{{demande.etat}}</p>
+        <p *ngIf="demande.etat == 'accepté'" disabled="enabled" >CV {{demande.etat}}</p>
       </div>
       <div class="stepwizard-step">
         <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-        <p *ngIf="demande.etat == 'en cours'"> Step 3</p>
+        <p *ngIf="demande.etat == ''" disabled="enabled"> Step 3</p>
       </div>
       <div class="stepwizard-step">
         <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
-        <p *ngIf="demande.etat == 'en cours'"> Step 3</p>
+        <p *ngIf="demande.etat == ''"> Step 3</p>
       </div>
     </div>
   </div>

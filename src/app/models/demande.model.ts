@@ -6,7 +6,7 @@ export class Demande {
 
   id: string;
   lettreMotivation: string;
-  date: string;
+  datePostulation: Date;
   etat: string;
   candidat: User;
   offre: Offre;

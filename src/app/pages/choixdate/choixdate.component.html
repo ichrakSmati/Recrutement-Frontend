@@ -1,0 +1,26 @@
+
+<section class="site-section">
+  <div class="container">
+
+    <form>
+      <div class="form-row align-items-center">
+        <div class="col-auto my-1">
+          <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
+          <select name="entretien.date" [(ngModel)]="entretien.date"  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option selected>Choose...</option>
+            <option value={{choix.date1}}>{{choix.date1 | date:'yyyy/MM/dd' }}</option>
+            <option value={{choix.date2}}>{{choix.date2 | date:'yyyy/MM/dd' }}</option>
+          </select>
+        </div>
+        <div class="col-auto my-1">
+          <div class="custom-control custom-checkbox mr-sm-2">
+            <input  name="entretien.type" [(ngModel)]="entretien.type" value="entretien virtuel" type="checkbox" class="custom-control-input" id="customControlAutosizing">
+            <label  class="custom-control-label" for="customControlAutosizing">entretien a distance</label>
+          </div>
+        </div>
+        <div class="col-auto my-1">
+          <button type="submit" class="btn btn-primary" (click)="createEntretienForm()">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div></section>

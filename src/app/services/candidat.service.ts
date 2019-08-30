@@ -39,15 +39,31 @@ export class CandidatService {
 
     return this.http.request(req);
   }
-  getCandidatId(id){
-    return this.http.get<User>(this.candidatUrl + 'id/' + id, this.httpOptions);
+  edit(candidat){
+    return this.http.put<Candidat>(this.candidatUrl + 'update' ,  candidat, this.httpOptions );
 
+  }
+  getCandidatId(id){
+    console.log(id);
+    return this.http.get<Candidat>(this.candidatUrl + 'id/' + id, this.httpOptions);
+
+  }
+  getUserId(id){
+    console.log(id);
+    return this.http.get<User>(this.candidatUrl + 'user/' + id, this.httpOptions);
+
+  }
+
+  getCandidat(){
+    return this.http.get<Candidat[]>(this.candidatUrl , this.httpOptions);
   }
 
   getnombreCandidatParoffre(offre){
-    return this.http.get<number[]>(this.candidatUrl+'nombrecandidat/'+ offre, this.httpOptions);
+    return this.http.get<number[]>(this.candidatUrl+'nombrecandidat'+ offre, this.httpOptions);
   }
-
+  getFiles(filename): Observable<any> {
+    return this.http.get('http://localhost:8088/cv/files/' + filename);
+  }
 }
 
 

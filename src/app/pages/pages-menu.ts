@@ -21,5 +21,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Recruteurs',
     icon: 'home-outline',
     link: '/pages/recruteurs',
+  },
+  {
+    title: 'cvtheque',
+    icon: 'grid',
+    link: '/pages/cvtheque',
+  },
+  {
+    title: 'entretien',
+    icon: 'grid',
+    link: '/pages/entretien',
   }
 ];

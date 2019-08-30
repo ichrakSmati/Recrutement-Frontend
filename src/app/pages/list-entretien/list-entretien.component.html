@@ -1,0 +1,51 @@
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<hr>
+<div class="container bootstrap snippet">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <div class="table-responsive">
+            <table class="table user-list">
+              <thead>
+              <tr>
+                <th><span>Candidat</span></th>
+                <th><span>Date</span></th>
+                <th ><span>type</span></th>
+                <th><span>etat</span></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody *ngFor = "let entretien of entretiens">
+              <tr *ngIf="entretien.date>currentDate">
+                <td>
+                  <a href="#" class="user-link">{{entretien.candidat.nom}}  {{entretien.candidat.prenom}}</a>
+                </td>
+                <td>
+                  <span class="user-subhead" >{{entretien.date  | date:'yyyy/MM/dd' }}</span>
+                </td>
+                <td>
+                  <a href="#">{{entretien.type}}</a>
+                </td>
+                <td>
+                  <span class="label label-default">{{entretien.etat}}</span>
+                </td>
+                <td style="width: 20%;">
+                  <a *ngIf="entretien.etat=='En attente de l entretien'" type="button" (click)="entretiensucces(entretien)" class="table-link">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                                            </span>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

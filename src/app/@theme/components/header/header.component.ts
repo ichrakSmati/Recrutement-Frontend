@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component,Input, OnDestroy, OnInit } from '@angular/core';
 import {
   NbIconLibraries,
   NbMediaBreakpointsService,
@@ -16,6 +16,12 @@ import {CandidatService} from "../../../services/candidat.service";
 import {AuthService} from "../../../service/auth.service";
 import {Router} from "@angular/router";
 
+import {NotificationService} from "../../../services/notification.service";
+import {Notif} from "../../../models/notif.model";
+import {NotifierService} from "angular-notifier";
+import * as $ from 'jquery';
+import {NotifResponse} from "../../../models/NotifResponse.model";
+declare var $: $;
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -26,6 +32,9 @@ private recruteurId:string;
   recruteur:User;
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
+  private readonly notifier: NotifierService;
+private message:string;
+  notifs: Notif[];
 
   themes = [
     {
@@ -50,23 +59,44 @@ private recruteurId:string;
 
   userMenu = [ { title: 'Profile', link:'pages/profil' }, { title: 'Log out', link: 'login' } ];
 
-  constructor(iconsLibrary: NbIconLibraries,
-              private sidebarService: NbSidebarService,
+  constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
               private userService: UserData,
+              private  authService: AuthService,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
               private candidatService: CandidatService,
-              private  authService: AuthService,
-              private router: Router) {
+              private notificationService : NotificationService,
+              private notifierService: NotifierService ,
+              private router:Router,
+              iconsLibrary: NbIconLibraries) {
     iconsLibrary.registerFontPack('fa', { packClass: 'fa', iconClassPrefix: 'fa' });
-  }
 
+  }
   ngOnInit() {
+    this.notificationService.getNotif()
+      .subscribe(data=>{
+        this.notifs=data;
+        $('.toast').toast('show');
+
+        //  for (let notif of this.notifs) {
+        /* if(notif.etat==true){
+          console.log("bye");
+          this.notifier.show({
+            message: this.message,
+            type: 'info',
+            //id: notif.id,
+          });
+          //}
+        }*/
+      });
+
     this.recruteurId= localStorage.getItem("Id");
+    console.log("recruteur"+localStorage.getItem("Id"));
     this.candidatService.getCandidatId(this.recruteurId)
       .subscribe(data => {
+        console.log(data);
         this.recruteur = data;
       });
     this.currentTheme = this.themeService.currentTheme;
@@ -106,7 +136,20 @@ private recruteurId:string;
 
     return false;
   }
+  dismiss(notif: Notif) {
+    this.notificationService.changeetat(notif).subscribe(val => {
+      this.router.navigate(['/pages/']);
 
+    });
+  }
+
+  /*public showSpecificNotification( type: string, message: string, id: string ): void {
+    this.notifier.show( {
+      id,
+      message,
+      type
+    } );
+  }*/
   navigateHome() {
     this.menuService.navigateHome();
     return false;

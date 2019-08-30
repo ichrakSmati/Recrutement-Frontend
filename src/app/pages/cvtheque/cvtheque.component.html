@@ -1,0 +1,22 @@
+<div class="row">
+<div *ngFor = "let candidat of candidats" class="col-lg-6 ml-auto">
+  <pdf-viewer src="../../assets/UploadCv/{{candidat.cv}}"
+              [fit-to-page]="false"
+              [render-text]="true"
+              style="display: block;"
+  click="send(candidat)">
+  </pdf-viewer>
+  <button (click)="send(candidat)">Envoyer demande d'entretien</button>
+<div class="calendar-container " *ngIf="Etat==true">
+  <input [nbDatepicker]="datepicker" name="entretien.date" [(ngModel)]="entretien.date">
+  <nb-datepicker #datepicker></nb-datepicker>
+  <div class="col-auto my-1">
+    <div class="custom-control custom-checkbox mr-sm-2">
+      <input  name="entretien.type" [(ngModel)]="entretien.type" value="entretien virtuel" type="checkbox" class="custom-control-input" id="customControlAutosizing">
+      <label  class="custom-control-label" for="customControlAutosizing">entretien a distance</label>
+    </div>
+  </div>
+  <button (click)="entretienForm(candidat)">Demande d'entretien</button>
+</div>
+</div>
+</div>

@@ -13,6 +13,10 @@ import {ProfilComponent} from "./compte/profil/profil.component";
 import {RoleGuardService as RoleGuard} from "../login/role-guard.service";
 import {DeposerOffreComponent} from "./DeposerOffre/deposerOffre.component";
 import {ModifierOffreComponent} from "./liste-offre/modifier-offre/modifierOffre.component";
+import {CvthequeComponent} from "./cvtheque/cvtheque.component";
+import {ChoixdateComponent} from "./choixdate/choixdate.component";
+import {ListEntretienComponent} from "./list-entretien/list-entretien.component";
+import { DashboardComponent } from './DeposerOffre/dashboard.component';
 
 const routes: Routes = [{
   path: '',
@@ -41,6 +45,21 @@ const routes: Routes = [{
       data: {
         expectedRole: ['ROLE_ADMIN','ROLE_RECRUTEUR'],
       }
+    },{
+      path: 'choix/:id',
+      component: ChoixdateComponent,
+    },
+    {
+      path: 'liste',
+      component: DashboardComponent,
+    },
+    {
+      path: 'cvtheque',
+      component: CvthequeComponent,
+    },
+    {
+      path: 'entretien',
+      component: ListEntretienComponent,
     },
     {
       path: 'offre/:id',

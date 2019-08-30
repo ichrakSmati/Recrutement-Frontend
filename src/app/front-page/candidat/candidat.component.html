@@ -20,8 +20,6 @@
         <a data-fancybox data-ratio="2" class="block__96788">
           <img src="\assets\Uploads\{{candidat.photo}}" alt="Image" class="img-fluid img-shadow">
         </a>
-      </div>
-      <div class="col-lg-4 ml-auto">
         <h2 class="section-title mb-3">{{candidat.nom}} {{candidat.prenom}}</h2>
         <p class="lead">date de naissance : {{candidat.dateNaissance | date :  "dd.MM.y"}}</p>
         <p class="lead">Email : {{candidat.email}}</p>
@@ -31,8 +29,16 @@
           </label>
 
           <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+        </div>
       </div>
-    </div>
-  </div>
-  </div>
+      <div class="col-lg-6 ml-auto">
+        <pdf-viewer src="../../assets/UploadCv/{{candidat.cv}}"
+
+                    [render-text]="true"
+                    style="display: block;">
+
+        </pdf-viewer>
+      </div>
+
+  </div></div>
 </section>

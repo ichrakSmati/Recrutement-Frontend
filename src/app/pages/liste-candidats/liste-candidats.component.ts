@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {DemandeService} from "../../services/demande.service";
 import {Demande} from "../../models/demande.model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {NbDateService, NbIconLibraries, NbWindowService} from "@nebular/theme";
+import {NbWindowService} from "@nebular/theme";
 import {Offre} from "../../models/offre.model";
-import {EntretienService} from "../../services/entretien.service";
-import {Choixdate} from "../../models/choixdate.model";
+import {CandidatService} from "../../services/candidat.service";
+import {NotificationService} from "../../services/notification.service";
+import {Notif} from "../../models/notif.model";
+import {NotifResponse} from "../../models/NotifResponse.model";
+import {User} from "../../models/user.model";
 
 // @ts-ignore
 @Component({
@@ -15,67 +18,74 @@ import {Choixdate} from "../../models/choixdate.model";
 })
 export class ListeCandidatsComponent implements OnInit {
 demandes: Demande[];
+  notif:NotifResponse=new NotifResponse();
+
   private offreId: number;
   mycontent: string;
   private selectedemande: Demande;
-  min: Date;
-  max: Date;
-  result = '';
-  datemin: string;
-  datemax: string;
-  choixdateEntretien: Choixdate = new Choixdate();
-  etat : boolean = false;
-
-  constructor(iconsLibrary: NbIconLibraries, protected dateService: NbDateService<Date>, private entretienService: EntretienService, private route: ActivatedRoute ,private demandeService: DemandeService,private windowService: NbWindowService,private router: Router) {
-    iconsLibrary.registerFontPack('fa', { packClass: 'fa', iconClassPrefix: 'fa' });
-    this.min = this.dateService.addDay(this.dateService.today(), -5);
-    this.max = this.dateService.addDay(this.dateService.today(), 5);
+private userId:string;
+private user:User;
+  constructor(private route: ActivatedRoute ,
+              private demande: DemandeService,
+              private windowService: NbWindowService,
+              private router: Router,
+              private notificationService:NotificationService,
+              private candidatService:CandidatService) {
   }
 
   ngOnInit() {
+    this.userId = localStorage.getItem("Id");
+    console.log(this.userId);
+    this.candidatService.getUserId(this.userId)
+      .subscribe(data => {
+        console.log(data);
+        this.user = data;
+      });
     this.route.params.forEach((params: Params) => {
       this.offreId = Number.parseInt(params['id']);
     });
-    this.demandeService.getdemandesparOffre(this.offreId)
+    this.demande.getdemandesparOffre(this.offreId)
       .subscribe(data => {
         console.log(data);
         this.demandes = data;
       });
   }
-  accepte(demande: Demande, dateChoix: string): void {
-    let mor = dateChoix.toString().split('-');
-    this.datemin = mor[0];
-    this.datemax = mor[1];
-    this.choixdateEntretien.date1 = this.datemin;
-    this.choixdateEntretien.date2 = this.datemax;
-    this.choixdateEntretien.demande=demande;
-    this.demandeService.accepte(demande)
+  accepte(demande): void {
+    this.selectedemande = demande;
+    this.demande.accepte(demande)
       .subscribe(data => {
-        console.log('demande de postulation accepté.');
-        this.entretienService.choixoffre(this.choixdateEntretien)
-          .subscribe(data => {
-            alert('Date disponibilté envoyé avec succés.');
-          });
+        alert('demande de postulation accepté.');
+
+        this.router.navigate(['/pages/choixentretien/' + this.selectedemande.id]);
       });
   }
 
-
+  date(demande): void {
+    this.selectedemande = demande;
+    this.demande.accepte(demande)
+      .subscribe(data => {
+        this.router.navigate(['/pages/choix/' + this.selectedemande.id]);
+      });
+  }
   refuser(demande): void {
-    this.demandeService.refuser(demande)
+    this.demande.refuser(demande)
       .subscribe(data => {
         alert('demande de postulation refusé.');
-      });
+            this.notificationService.notifRefus(demande , this.notif)
+              .subscribe(value => {
+                console.log(value);
+              });
+          });
   }
-
-  pickDateEtat(){
-    console.log(this.etat);
-    if (this.etat == true){
-      this.etat=false;
-    }
-
-    else {
-      this.etat=true;
-    }
-    console.log(this.etat);
+  openWindow(demande) {
+    this.windowService.open(
+      demande,
+      {
+        title: 'Lettre de motivation',
+        context: {
+          text: demande.lettreMotivation,
+        },
+      },
+    );
   }
 }

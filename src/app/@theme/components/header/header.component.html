@@ -8,28 +8,30 @@
 
 </div>
 
+
+
 <div class="header-container">
-  <div class="dropdown">
-      <nb-icon class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" style="float: right;" icon="bell" pack="fa"></nb-icon>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
+
+  <div class="dropdown" style="float:right;">
+    <button class="dropbtn"><nb-icon class="dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" style="float: right;" icon="bell" pack="fa"></nb-icon></button>
+    <div class="dropdown-content">
+      <div *ngFor = "let notif of notifs">
+        <div *ngIf="notif.etat==true">
+          <div>
+            <button type="button" class="ml-2 mb-1 close" (click)="dismiss(notif)" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div>
+            {{notif.message}}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <nb-actions>
 
-  <nb-actions size="small">
-    <nb-action class="control-item">
-      <nb-search type="rotate-layout"></nb-search>
-    </nb-action>
-    <nb-action class="control-item" icon="email-outline"></nb-action>
-    <nb-action class="control-item" icon="bell-outline">
-      <nb-list>
-        <nb-list-item>notification 1</nb-list-item>
-        <nb-list-item>notification 2</nb-list-item>
-        <nb-list-item>notification 3</nb-list-item>
-      </nb-list>
-    </nb-action>
+
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"
@@ -39,3 +41,5 @@
     </nb-action>
   </nb-actions>
 </div>
+
+

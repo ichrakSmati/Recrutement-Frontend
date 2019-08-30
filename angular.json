@@ -42,6 +42,9 @@
               "src/app/@theme/styles/styles.scss"
             ],
             "scripts": [
+              "node_modules/ngx-extended-pdf-viewer/assets/pdf.js",
+              "node_modules/ngx-extended-pdf-viewer/assets/pdf.worker.js",
+              "node_modules/ngx-extended-pdf-viewer/assets/viewer.js",
               "node_modules/pace-js/pace.min.js",
               "node_modules/tinymce/tinymce.min.js",
               "node_modules/tinymce/themes/modern/theme.min.js",

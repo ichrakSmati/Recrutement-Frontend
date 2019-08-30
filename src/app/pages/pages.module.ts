@@ -8,7 +8,8 @@ import {
   NbListModule,
   NbMenuModule, NbPopoverModule, NbSelectModule, NbTabsetModule, NbTooltipModule,
   NbUserModule,
-  NbWindowModule, NbAccordionModule, NbIconModule
+  NbAccordionModule, NbIconModule,
+  NbCalendarModule,NbWindowModule
 } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -26,6 +27,10 @@ import {EntretienService} from "../services/entretien.service";
 import {DeposerOffreModule} from "./DeposerOffre/deposerOffre.module";
 import {DeposerOffreComponent} from "./DeposerOffre/deposerOffre.component";
 import {ModifierOffreComponent} from "./liste-offre/modifier-offre/modifierOffre.component";
+import { CvthequeComponent } from './cvtheque/cvtheque.component';
+import {PdfViewerModule} from "ng2-pdf-viewer";
+import { ChoixdateComponent } from './choixdate/choixdate.component';
+import { ListEntretienComponent } from './list-entretien/list-entretien.component';
 
 
 
@@ -33,9 +38,11 @@ import {ModifierOffreComponent} from "./liste-offre/modifier-offre/modifierOffre
   imports: [
     NbIconModule,
     NbDatepickerModule,
+    NbCalendarModule,
     NbListModule,
     NbUserModule,
     NbCardModule,
+    PdfViewerModule,
     PagesRoutingModule,
     ThemeModule,
     NbMenuModule,
@@ -65,6 +72,10 @@ import {ModifierOffreComponent} from "./liste-offre/modifier-offre/modifierOffre
     ListeCandidatsComponent,
     ChoixentretienComponent,
     DeposerOffreComponent,
+    CvthequeComponent,
+    ChoixdateComponent,
+    ListEntretienComponent,
+
   ],
   providers:[
     EntretienService,

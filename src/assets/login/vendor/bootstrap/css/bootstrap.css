@@ -2544,7 +2544,7 @@ tbody.collapse.show {
 
 .dropdown-toggle::after {
   display: inline-block;
-  width: 0;
+  width: 50;
   height: 0;
   margin-left: 0.255em;
   vertical-align: 0.255em;
